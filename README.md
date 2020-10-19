@@ -14,7 +14,10 @@ The bidirectional flow datasets include 3x more features because the data comes 
 Figure 1 shows a mathematical description of each feature.
 The datasets are also labeled with the correct device type. Traffic features coming from a UAV are labeled with +1. Other features are labeled as 0. Table 1 summarizes the dimensions of each dataset.
 
-[<img src="https://github.com/freiremelgiz/ECE532_FinalProject/blob/master/resources/img/dataset_dim.PNG">]
+<img src="https://github.com/freiremelgiz/ECE532_FinalProject/blob/master/resources/img/dataset_dim.PNG">
+
+<img src="https://github.com/freiremelgiz/ECE532_FinalProject/blob/master/resources/img/feature_table.PNG">
+Figure 1. Feature description based on raw data. The features are found in the dataset along with labels.
 
 ## Authors
 
