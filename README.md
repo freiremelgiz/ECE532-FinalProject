@@ -41,7 +41,7 @@ singular values in my SVD.
 * **12/01/2020** Update 2 Due
 * 12/05/2020  Neural Network Classification
 * **12/12/2020** Final Report Due
-* **12/17/2020Peer** Review Due
+* **12/17/2020** Peer Review Due
 
 ## Authors
 
