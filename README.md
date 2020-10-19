@@ -19,6 +19,30 @@ The datasets are also labeled with the correct device type. Traffic features com
 
 **Table 1**. Dataset dimension summary.
 <img src="https://github.com/freiremelgiz/ECE532_FinalProject/blob/master/resources/img/dataset_dim.PNG">
+
+## Algorithms that will be implemented
+Since the features include some niche statistical calculations, I will preform principal component
+analysis on the testing data to understand which statistical measures are more significant. This may
+help me decide to perform low-rank approximation if certain features are meaningless to avoid small
+singular values in my SVD.
+* I will employ a basic binary linear classifier of the form y=sign(Xw). Where +1 corresponds to a UAV device type and −1 corresponds to non-UAV type. I will use a least-squares problem to find the weights using the training datasets. I will then validate the classifier on the testing data provided. However, since the testing and training data were separated a priori, I may attempt cross-validation on the provided training set to prevent overfitting. Since dataset6 has more features than datapoints in the training set, I will use a low-rank approximation using SVD along with Tikhonov Regularization to train the classifier while minimizing noise amplification. A parameter whose performance I will investigate in this problem is the λ for the regularization term to place importance on minimizing the norm of the weights.
+
+* The second algorithm I will use to classify the dataset is Hinge Loss. We will learn about this algorithm in Week 11 of the class. This algorithm involves a loss function used for training the classifier.
+
+* The third algorithm I will use to classify the dataset is neural networks. We will learn about this algorithm in Week 13 of the class. Neural networks pass the input features through certain nodes with weights. I predict a key parameter in this algorithm will be the number of"nodes" in the network.
+
+## Project Timeline
+* **10/22/2020** Project Proposal Due
+* 10/26/2020  Principal Component Analysis
+* 11/02/2020  Least Squares Classification
+* 11/09/2020  SVD and Tikhonov Regularization
+* **11/17/2020** Update 1 Due
+* 11/23/2020  Hinge Loss Classification
+* **12/01/2020** Update 2 Due
+* 12/05/2020  Neural Network Classification
+* **12/12/2020** Final Report Due
+* **12/17/2020Peer** Review Due
+
 ## Authors
 
 * [**Victor Freire**](mailto:freiremelgiz@wisc.edu) - [University of Wisconsin-Madison](https://www.wisc.edu/)
