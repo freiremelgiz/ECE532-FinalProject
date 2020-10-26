@@ -33,6 +33,13 @@ singular values in my SVD.
 
 * The third algorithm I will use to classify the dataset is neural networks. We will learn about this algorithm in Week 13 of the class. Neural networks pass the input features through certain nodes with weights. I predict a key parameter in this algorithm will be the number of"nodes" in the network.
 
+## PCA - Principal Component Analysis
+When trying to import the data from the `.mat` files into Python3, I found that the dataset was saved with MATLAB v7.3.
+The `scipy.io.loadmat()` function cannot handle `.mat` files that were saved with this version of MATLAB.
+To solve this problem, I opened each dataset in MATLAB R2020a (which can handle the old files) and re-saved them in a newer format.
+The updated, but unmodified dataset files can be found in `~/resources/data/`.
+
+
 ## Project Timeline
 * **10/22/2020** Project Proposal Due
 * 10/26/2020  Principal Component Analysis
