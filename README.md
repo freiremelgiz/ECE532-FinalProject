@@ -43,7 +43,7 @@ To solve this problem, I opened each dataset in MATLAB R2020a (which can handle 
 The updated, but unmodified dataset files can be found in `~/resources/data/`.
 
 The Singular Value Decomposition of dataset 1 yields the singular values plotted in the images below.
-<img src="https://github.com/freiremelgiz/ECE532_FinalProject/blob/master/resources/img/PCA_sigma.png" width="400"> | <img src="https://github.com/freiremelgiz/ECE532_FinalProject/blob/master/resources/img/PCA_sigma_log.png" width="400">
+<img src="https://github.com/freiremelgiz/ECE532_FinalProject/blob/master/resources/img/PCA_sigma.png" width="400"> <img src="https://github.com/freiremelgiz/ECE532_FinalProject/blob/master/resources/img/PCA_sigma_log.png" width="400">
 
 ![formula](https://render.githubusercontent.com/render/math?math=\mathbf{x}=ab^i)
 
