@@ -1,4 +1,4 @@
-*version:* 1.0.0
+*version:* 1.1.0
 
 # ECE532 Final Project - Classifying a public dataset
 
@@ -39,6 +39,11 @@ The `scipy.io.loadmat()` function cannot handle `.mat` files that were saved wit
 To solve this problem, I opened each dataset in MATLAB R2020a (which can handle the old files) and re-saved them in a newer format.
 The updated, but unmodified dataset files can be found in `~/resources/data/`.
 
+The Singular Value Decomposition of dataset 1 yields the singular values plotted in the images below.
+<img src="https://github.com/freiremelgiz/ECE532_FinalProject/blob/master/resources/img/PCA_sigma.png">
+<img src="https://github.com/freiremelgiz/ECE532_FinalProject/blob/master/resources/img/PCA_sigma_log.png">
+
+![formula](https://render.githubusercontent.com/render/math?math=\mathbf{x}=ab^i)
 
 ## Project Timeline
 * **10/22/2020** Project Proposal Due
