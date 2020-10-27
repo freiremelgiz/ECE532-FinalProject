@@ -45,7 +45,8 @@ The updated, but unmodified dataset files can be found in `~/resources/data/`.
 The Singular Value Decomposition of dataset 1 yields the singular values plotted in the images below.
 <img src="https://github.com/freiremelgiz/ECE532_FinalProject/blob/master/resources/img/PCA_sigma.png" width="400"> <img src="https://github.com/freiremelgiz/ECE532_FinalProject/blob/master/resources/img/PCA_sigma_log.png" width="400">
 
-The magnitude of the singular values decreases rapidly. However, values remain relatively high until about index 20. I will consider this and perform a low-rank approximation of the data matrix as ![formula](https://render.githubusercontent.com/render/math?math=\mathbf{X}=\sum_{i=1}^20\mathbf{u}_i\sigma_i\mathbf{v}_i^T)
+The magnitude of the singular values decreases rapidly. However, values remain relatively high until about index 20. I will consider this and perform a low-rank approximation of the data matrix as
+![formula](https://render.githubusercontent.com/render/math?math=\mathbf{X}_r=\sum_{i=1}^20\mathbf{u}_i\sigma_i\mathbf{v}_i^T)
 
 ## Project Timeline
 * **10/22/2020** Project Proposal Due
