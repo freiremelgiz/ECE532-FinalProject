@@ -8,30 +8,35 @@ from Dataset import Dataset
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Initialize a dataset
-num_dataset = 1
+""" Helper Functions """
+# Perform data classification with provided weights
+def classify(X,w):
+    y_hat = np.sign(X@w) # Predict labels
+    return y_hat
+
+# Gets the percent error of the predictions
+def get_perr(y_hat, y):
+    nerr = np.sum(np.abs(y_hat-y)/2) # Number of errors
+    perr = nerr/len(y)*100 # Percent error
+    return perr
+
+# Returns the weights using the original naive LS solution
+def trainLSOrig(X, y):
+    # Find least squares solution with training data provided
+    w = np.linalg.inv(X.T@X)@X.T@y
+    return w
+
+
+## Initialize a dataset
+num_dataset = 2
 data = Dataset(num_dataset) # Test dataset 1
 
-# Find least squares solution
+# Use helper functions to get percent error
+w = trainLSOrig(data.X_tr, data.y_tr) # Get weights with training set
+y_hat = classify(data.X,w) # Classify test set
+perr = get_perr(y_hat, data.y) # Get percent error
 
-# Find skinny SVD of data matrix
-U, s, VT = np.linalg.svd(X_m,full_matrices=False)
-
-
-# Plot singular values vs features
-fig = plt.figure()
-ax = fig.add_subplot(111)
-ax.plot(np.log10(s))
-ax.set_xlabel('Sing value index $i$', fontsize=16)
-ax.set_ylabel('$\log_{10}(\sigma_i)$', fontsize=16)
-ax.set_title('Dataset {} Singular Values'.format(num_dataset), fontsize=18)
-
-fig2 = plt.figure()
-ax2 = fig2.add_subplot(111)
-ax2.plot(s)
-ax2.set_xlabel('Sing value index $i$', fontsize=16)
-ax2.set_ylabel('$\sigma_i$', fontsize=16)
-ax2.set_title('Dataset {} Singular Values'.format(num_dataset), fontsize=18)
-plt.show()
-
+# Output results
+print("Using original Least Squares")
+print("Percent labels misclassified: {}%".format(perr.round(2)))
 
