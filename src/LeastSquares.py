@@ -28,15 +28,23 @@ def trainLSOrig(X, y):
 
 
 ## Initialize a dataset
-num_dataset = 6
+num_dataset = 1
 data = Dataset(num_dataset) # Test dataset 1
 
 # Use helper functions to get percent error
 w = trainLSOrig(data.X_tr, data.y_tr) # Get weights with training set
+#print(np.sort(np.abs(w)))
+print(w)
 y_hat = classify(data.X,w) # Classify test set
 perr = get_perr(y_hat, data.y) # Get percent error
 
 # Output results
 print("Using original Least Squares")
 print("Percent labels misclassified: {}%".format(perr.round(2)))
+
+
+# Examine weight vector
+for i in range(len(w)):
+    if(np.abs(w[i])> 3000):
+        print(i)
 

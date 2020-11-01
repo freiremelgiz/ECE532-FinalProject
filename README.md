@@ -6,7 +6,7 @@ This repository contains the code for the final project of ECE532: Matrix Method
 
 ## Project Dataset - Unmmanned Aerial Vehicles (UAV) Intrusion Detection
 The dataset I chose was posted at the [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/Unmanned+Aerial+Vehicle+%28UAV%29+Intrusion+Detection).
-However, the dataset can be downloaded from the author's personal [website](https://archive.ics.uci.edu/ml/datasets/Unmanned+Aerial+Vehicle+%28UAV%29+Intrusion+Detection).
+However, the dataset can be downloaded from the author's personal [website](http://mason.gmu.edu/~lzhao9/materials/data/UAV/).
 The dataset was collected for 3 quadcopter models and 2 data flow directions for each (6 datasets).
 Each dataset also contains two matrices of "testing data" and "training data".
 Each matrix consists of 9 statistic measurements of network traffic timing and size for a total of 18 features. The data collection was performed in both unidirectional and bidirectional data flow.
@@ -50,7 +50,7 @@ The magnitude of the singular values decreases rapidly. However, values remain r
 
 ## Least Squares Classification
 I added a processing step to the Dataset class to convert the label vectors from the {0,+1} space to the {-1,+1} space to match the output of the sign() function.
-The first classification was a naive LeastSquares training the weight vector with the training data provided in the datasets. Then I classified the testing data on each dataset. The results are summarized in the table below:
+The first classification was a naive LeastSquares training the weight vector with the training data provided in the datasets. Then I classified the testing data on each dataset. The results are summarized in the table below.
 
 | Dataset | Percent Error |
 | :----:  | :-----------: |
@@ -60,6 +60,10 @@ The first classification was a naive LeastSquares training the weight vector wit
 |   4     |      3.25 %   |
 |   5     |      8.61 %   |
 |   6     |     56.06 %   |
+
+Aside from dataset 6, which has very scarce data, these percent errors are low for an initial classification algorithm.
+
+I took a look at the weight vector computed for each dataset
 
 ## Project Timeline
 * **10/22/2020** Project Proposal Due
