@@ -31,6 +31,7 @@ class Dataset():
         data = loadmat('./../resources/data/pub_dataset' + str(dataset) + '.mat')
         self._process_dataset(data) # Obtain the data matrices and labels
         self._get_dimensions()      # Find dimensions of the data
+        self._convert_labels()      # Convert the labels to +1 -1 space
 
     # Extract X matrices and y vectors from dataset
     def _process_dataset(self,datafile):
@@ -46,3 +47,9 @@ class Dataset():
         self.rows = self.X.shape[0]
         self.cols = self.X.shape[1]
         self.rows_tr = self.X_tr.shape[0]
+
+    # Convert labels from (0,1) to (-1,+1)
+    def _convert_labels(self):
+        self.y = 2*(self.y - 0.5)
+        self.y_tr = 2*(self.y_tr - 0.5)
+
