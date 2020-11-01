@@ -28,7 +28,7 @@ def trainLSOrig(X, y):
 
 
 ## Initialize a dataset
-num_dataset = 2
+num_dataset = 6
 data = Dataset(num_dataset) # Test dataset 1
 
 # Use helper functions to get percent error

@@ -43,7 +43,7 @@ To solve this problem, I opened each dataset in MATLAB R2020a (which can handle 
 The updated, but unmodified dataset files can be found in `~/resources/data/`.
 
 The Singular Value Decomposition of dataset 1 yields the singular values plotted in the images below.
-<img src="https://github.com/freiremelgiz/ECE532_FinalProject/blob/master/resources/img/PCA_sigma.png" height="300"> <img src="https://github.com/freiremelgiz/ECE532_FinalProject/blob/master/resources/img/PCA_sigma_log.png" height="300">
+<img src="https://github.com/freiremelgiz/ECE532_FinalProject/blob/master/resources/img/PCA_sigma.png" height="250"> <img src="https://github.com/freiremelgiz/ECE532_FinalProject/blob/master/resources/img/PCA_sigma_log.png" height="250">
 
 The magnitude of the singular values decreases rapidly. However, values remain relatively high until about index 20. I will consider this and perform a low-rank approximation of the data matrix as
 ![formula](https://render.githubusercontent.com/render/math?math=\mathbf{X}_r=\sum_{i=1}^20\mathbf{u}_i\sigma_i\mathbf{v}_i^T)
@@ -53,9 +53,13 @@ I added a processing step to the Dataset class to convert the label vectors from
 The first classification was a naive LeastSquares training the weight vector with the training data provided in the datasets. Then I classified the testing data on each dataset. The results are summarized in the table below:
 
 | Dataset | Percent Error |
-| ------  | ------------- |
+| :----:  | :-----------: |
 |   1     |      0.20 %   |
 |   2     |      0.11 %   |
+|   3     |      1.78 %   |
+|   4     |      3.25 %   |
+|   5     |      8.61 %   |
+|   6     |     56.06 %   |
 
 ## Project Timeline
 * **10/22/2020** Project Proposal Due
