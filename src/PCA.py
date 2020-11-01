@@ -22,8 +22,6 @@ U, s, VT = np.linalg.svd(X_m,full_matrices=False)
 
 # Since data is in the rows, PCA is v_1
 print("PC of data: \n{}".format(VT.T[:,0].round(2)))
-print("MS: {}".format(VT.T[43,0]))
-
 
 # Plot singular values vs features
 fig = plt.figure()

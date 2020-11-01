@@ -43,8 +43,3 @@ print("Using original Least Squares")
 print("Percent labels misclassified: {}%".format(perr.round(2)))
 
 
-# Examine weight vector
-for i in range(len(w)):
-    if(np.abs(w[i])> 3000):
-        print(i)
-

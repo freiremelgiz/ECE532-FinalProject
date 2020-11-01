@@ -63,7 +63,6 @@ The first classification was a naive LeastSquares training the weight vector wit
 
 Aside from dataset 6, which has very scarce data, these percent errors are low for an initial classification algorithm.
 
-I took a look at the weight vector computed for each dataset
 
 ## Project Timeline
 * **10/22/2020** Project Proposal Due
