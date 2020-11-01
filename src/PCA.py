@@ -27,5 +27,13 @@ ax.plot(np.log10(s))
 ax.set_xlabel('Sing value index $i$', fontsize=16)
 ax.set_ylabel('$\log_{10}(\sigma_i)$', fontsize=16)
 ax.set_title('Dataset {} Singular Values'.format(num_dataset), fontsize=18)
+
+fig2 = plt.figure()
+ax2 = fig2.add_subplot(111)
+ax2.plot(s)
+ax2.set_xlabel('Sing value index $i$', fontsize=16)
+ax2.set_ylabel('$\sigma_i$', fontsize=16)
+ax2.set_title('Dataset {} Singular Values'.format(num_dataset), fontsize=18)
 plt.show()
+
 
