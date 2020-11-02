@@ -27,7 +27,7 @@ def trainLSOrig(X, y):
     return w
 
 
-## Initialize a dataset
+# Initialize a dataset
 num_dataset = 1
 data = Dataset(num_dataset) # Test dataset 1
 
@@ -41,5 +41,13 @@ perr = get_perr(y_hat, data.y) # Get percent error
 # Output results
 print("Using original Least Squares")
 print("Percent labels misclassified: {}%".format(perr.round(2)))
+
+
+""" Low rank approximation and time complexity study """
+# Find skinny SVD of training data
+U, s, VT = np.linalg.svd(data.X_tr, full_matrices=False)
+
+# Find rank-20 approximation to data
+
 
 
