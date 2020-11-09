@@ -64,6 +64,11 @@ The first classification was a simple Least Squares training the weight vector w
 
 Aside from dataset 6, which has very scarce data, the percent errors are very low for the original Least Squares problem with the full-rank training data. The low-rank approximation did not perform well. This suggests that a large number of features are important in the classification process.
 
+## Tikhonov Regularization (Ridge Regression)
+Sometimes, the unregulated Least Squares problem can lead to classifier weights with large norms. This tends to cause unwanted noise amplification when performing classification of future data. Regularization techniques modify the Least Squares minimization problem by adding a regularizing term. In the case of Ridge Regression, the regularizing term is the ![formula](https://render.githubusercontent.com/render/math?math=\lambda)-parameterized L2 norm of the classifier weights.
+![formula](https://render.githubusercontent.com/render/math?math=min_\mathbf{w} ||\mathbf{Xw}-\mathbf{y}||_2^2 + \lambda||\mathbf{w}||_2^2)
+
+
 
 ## Project Timeline
 * **10/22/2020** Project Proposal Due

@@ -29,7 +29,7 @@ from scipy.io import loadmat
 class Dataset():
     def __init__(self,dataset):
         # Check dataset validity
-        if dataset > 6:
+        if dataset > 6 or dataset < 1:
             raise RuntimeError("Cannot find dataset {}".format(dataset))
         data = loadmat('./../resources/data/pub_dataset' + str(dataset) + '.mat')
         self._process_dataset(data) # Obtain the data matrices and labels
