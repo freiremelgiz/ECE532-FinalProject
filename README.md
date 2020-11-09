@@ -54,13 +54,13 @@ The first classification was a naive LeastSquares training the weight vector wit
 The results are summarized in the table below.
 
 | Dataset | % Error: Full-rank | Approximation rank |  % Error: Low-rank |
-| :----:  | :-----------: | :--: | : ----------: |
-|   1     |      0.20 %   |  20  |    32.08 %    |
-|   2     |      0.11 %   |  20  |    36.90 %    |
-|   3     |      1.78 %   |  20  |    29.62 %    |
-|   4     |      3.25 %   |   8  |    54.58 %    |
-|   5     |      8.61 %   |   8  |    44.61 %    |
-|   6     |     56.06 %   |   5  |    81.82 %    |
+| :----:  | :----------------: | :----------------: | : ---------------: |
+|   1     |         0.20 %     |  	 20	    |       32.08 %      |
+|   2     |         0.11 %     |         20         |       36.90 %      |
+|   3     |         1.78 %     |         20         |       29.62 %  	 |
+|   4     |         3.25 %     |          8         |       54.58 %   	 |
+|   5     |         8.61 %     |          8         |       44.61 %      |
+|   6     |        56.06 %     |          5         |       81.82 %      |
 
 Aside from dataset 6, which has very scarce data, the percent errors are very low for the original Least Squares problem with the full-rank training data. The low-rank approximation did not perform well. This suggests that a large number of features are important in the classification process.
 
