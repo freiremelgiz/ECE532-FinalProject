@@ -50,6 +50,12 @@ The magnitude of the singular values decreases rapidly. However, values remain r
 
 ## Least Squares Classification
 I added a processing step to the Dataset class to convert the label vectors from the {0,+1} space to the {-1,+1} space to match the output of the sign() function.
+
+| test1 | test2| test3|
+| --- | --- | --- |
+| 2 | 3 | 4 |
+| 1 | 2 | 2324 |
+
 The first classification was a simple Least Squares training the weight vector with the training data provided in the datasets. Then I classified the testing data on each dataset. Using the results from Principal Component Analysis, I decided to perform the Least Squares classification on a low-rank approximation of the training data matrix. The rank was chosen based on the trend of singular values found. The results are summarized in the table below.
 
 | Dataset | Error: Full-rank | Approximation rank |  Error: Low-rank |
