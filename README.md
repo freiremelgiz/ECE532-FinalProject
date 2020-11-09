@@ -45,23 +45,24 @@ The updated, but unmodified dataset files can be found in `~/resources/data/`.
 The Singular Value Decomposition of dataset 1 yields the singular values plotted in the images below.
 <img src="https://github.com/freiremelgiz/ECE532_FinalProject/blob/master/resources/img/PCA_sigma.png" height="250"> <img src="https://github.com/freiremelgiz/ECE532_FinalProject/blob/master/resources/img/PCA_sigma_log.png" height="250">
 
-The magnitude of the singular values decreases rapidly. However, values remain relatively high until about index 20. I will consider this and perform a low-rank approximation of the data matrix as
-![formula](https://render.githubusercontent.com/render/math?math=\mathbf{X}_r=\sum_{i=1}^20\mathbf{u}_i\sigma_i\mathbf{v}_i^T)
+The magnitude of the singular values decreases rapidly. However, values remain relatively high until about index 20 for the first 3 datasets, and index 8 for the last 3 datasets. I will consider this and perform a low-rank approximation of the data matrix as
+![formula](https://render.githubusercontent.com/render/math?math=\mathbf{X}_r=\sum_{i=1}^r\mathbf{u}_i\sigma_i\mathbf{v}_i^T)
 
 ## Least Squares Classification
 I added a processing step to the Dataset class to convert the label vectors from the {0,+1} space to the {-1,+1} space to match the output of the sign() function.
-The first classification was a naive LeastSquares training the weight vector with the training data provided in the datasets. Then I classified the testing data on each dataset. The results are summarized in the table below.
+The first classification was a naive LeastSquares training the weight vector with the training data provided in the datasets. Then I classified the testing data on each dataset.
+The results are summarized in the table below.
 
-| Dataset | Percent Error |
-| :----:  | :-----------: |
-|   1     |      0.20 %   |
-|   2     |      0.11 %   |
-|   3     |      1.78 %   |
-|   4     |      3.25 %   |
-|   5     |      8.61 %   |
-|   6     |     56.06 %   |
+| Dataset | % Error: Full-rank | Approximation rank |  % Error: Low-rank |
+| :----:  | :-----------: | :--: | : ----------: |
+|   1     |      0.20 %   |  20  |    32.08 %    |
+|   2     |      0.11 %   |  20  |    36.90 %    |
+|   3     |      1.78 %   |  20  |    29.62 %    |
+|   4     |      3.25 %   |   8  |    54.58 %    |
+|   5     |      8.61 %   |   8  |    44.61 %    |
+|   6     |     56.06 %   |   5  |    81.82 %    |
 
-Aside from dataset 6, which has very scarce data, these percent errors are low for an initial classification algorithm.
+Aside from dataset 6, which has very scarce data, the percent errors are very low for the original Least Squares problem with the full-rank training data. The low-rank approximation did not perform well. This suggests that a large number of features are important in the classification process.
 
 
 ## Project Timeline

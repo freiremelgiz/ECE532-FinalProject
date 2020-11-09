@@ -28,26 +28,46 @@ def trainLSOrig(X, y):
 
 
 # Initialize a dataset
-num_dataset = 1
-data = Dataset(num_dataset) # Test dataset 1
+num_dataset = 6
+
+data = Dataset(num_dataset) # Retrieve dataset object
+
+print("-- Using dataset {} --".format(num_dataset))
 
 # Use helper functions to get percent error
 w = trainLSOrig(data.X_tr, data.y_tr) # Get weights with training set
-#print(np.sort(np.abs(w)))
-print(w)
 y_hat = classify(data.X,w) # Classify test set
 perr = get_perr(y_hat, data.y) # Get percent error
 
 # Output results
-print("Using original Least Squares")
+print("Original Least Squares classification:")
 print("Percent labels misclassified: {}%".format(perr.round(2)))
 
 
-""" Low rank approximation and time complexity study """
+""" Low rank approximation study """
 # Find skinny SVD of training data
 U, s, VT = np.linalg.svd(data.X_tr, full_matrices=False)
+V = VT.T
 
-# Find rank-20 approximation to data
+# Find rank-20 or rank-8 approximation to data
+if num_dataset < 4:
+    rank = 20
+elif num_dataset == 6:
+    rank = 5
+else:
+    rank = 8
+
+# Compute low-rank approximation to X_tr
+X_r = np.zeros(data.X_tr.shape)
+for i in range(rank):
+    X_r += s[i]*np.outer(U[:,i],V[:,i])
 
 
+# Use helper functions to get percent error
+w = trainLSOrig(X_r, data.y_tr) # Get weights with training set
+y_hat = classify(data.X,w) # Classify test set
+perr = get_perr(y_hat, data.y) # Get percent error
 
+# Output results
+print("Least Squares with Rank-{} approximation:".format(rank))
+print("Percent labels misclassified: {}%".format(perr.round(2)))
