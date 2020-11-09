@@ -28,6 +28,9 @@ from scipy.io import loadmat
 # Dataset class holding one dataset
 class Dataset():
     def __init__(self,dataset):
+        # Check dataset validity
+        if dataset > 6:
+            raise RuntimeError("Cannot find dataset {}".format(dataset))
         data = loadmat('./../resources/data/pub_dataset' + str(dataset) + '.mat')
         self._process_dataset(data) # Obtain the data matrices and labels
         self._get_dimensions()      # Find dimensions of the data
