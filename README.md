@@ -51,7 +51,7 @@ The magnitude of the singular values decreases rapidly. However, values remain r
 ## Least Squares Classification
 I added a processing step to the Dataset class to convert the label vectors from the {0,+1} space to the {-1,+1} space to match the output of the sign() function.
 
-| test1 | test2| test3|
+| Dataset | Error: Full-rank| test3|
 | --- | --- | --- |
 | 2 | 3 | 4 |
 | 1 | 2 | 2324 |
