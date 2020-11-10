@@ -69,11 +69,11 @@ Aside from dataset 6, which has very scarce data, the percent errors are very lo
 Sometimes, the unregulated Least Squares problem can lead to classifier weights with large norms. This tends to cause unwanted noise amplification when performing classification of future data. Regularization techniques modify the Least Squares minimization problem by adding a regularizing term. In the case of Ridge Regression, the regularizing term is the ![formula](https://render.githubusercontent.com/render/math?math=\lambda)-parameterized L2 norm of the classifier weights.  
 
 
-![formula](https://render.githubusercontent.com/render/math?math=min_\mathbf{w}||\mathbf{Xw}-\mathbf{y}||_2^2\+\lambda||\mathbf{w}||_2^2)  
+![formula](https://render.githubusercontent.com/render/math?math=min_\mathbf{w}||\mathbf{Xw}-\mathbf{y}||_2^2%2B\lambda||\mathbf{w}||_2^2)  
 
-\[
+$$
 R = a + B_2
-\]
+$$
 
 
 I solved the Ridge Regression problem for each dataset using the provided training data. The ![formula](https://render.githubusercontent.com/render/math?math=\lambda) parameter was varied between \[1e-6, 20\]. For each value, a different classifier weight vector was computed and used to classify the testing data. The figure below shows the percent error evolution as the L2 norm of the weight vector increases. In general, the percent error is expected to increase for low weight vector norms because the minimization burden is shifted from the error norm. However, sometimes a large weight vector norm amplifies noise in the feature measurements and results in larger percent error.
