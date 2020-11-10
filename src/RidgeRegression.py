@@ -21,14 +21,18 @@ def trainRidge(X, y, lamb):
 if __name__ == "__main__":
     # Initialize plot
     fig = plt.figure()
+    # Generate array of lambdas
+    lamb_array = np.logspace(-6,1.3) # Create an array of lambda values
+
+    # iterate over each dataset
     for d in range(1,7):
         # Initialize a dataset
         num_dataset = d
         data = Dataset(num_dataset) # Retrieve dataset object
         print("-- Using dataset {} --".format(num_dataset))
 
-        # Generate array of lambdas
-        lamb_array = np.logspace(-6,1.3) # Create an array of lambda values
+        # Initialize Weight matrix for each lambda
+        W = np.zeros((data.cols,len(lamb_array)))
 
         # Initialize plotting arrays
         x_plot = np.zeros(len(lamb_array))
@@ -43,6 +47,8 @@ if __name__ == "__main__":
             # Store metric for plotting
             x_plot[i] = np.linalg.norm(w,2) # L2 norm of w
             y_plot[i] = perr # Percent error
+            # Store the weights into matrix
+            W[:,i] = w
 
         # Plot accumulated results
         ax = fig.add_subplot(2,3,d) # which subplot
@@ -52,6 +58,24 @@ if __name__ == "__main__":
         ax.set_ylabel('Percent Error [%]',fontsize=8)
         plt.xticks(fontsize=6)
         plt.yticks(fontsize=6)
+
+        # Perform Cross-Validation for best_w
+        cv_i = round(data.rows*0.1) # Hold out 10% data
+        best_w = np.zeros(data.cols) # init
+        best_perr = 100 # Init to max perr
+        for i in range(len(lamb_array)):
+            y_hat = classify(data.X[:cv_i,:],W[:,i]) # Classify
+            perr = get_perr(y_hat, data.y[:cv_i]) # Holdout error
+            if(perr <= best_perr): # Prioritize low w norms
+                best_w = W[:,i] # Store weights
+                best_perr = perr # Store perr
+        # Final classification on rest of test data
+        y_hat = classify(data.X[cv_i:,:],best_w) # Final classify
+        perr = get_perr(y_hat, data.y[cv_i:]) # Final perr
+
+        print("Cross-Validation size: {}".format(cv_i))
+        print("Error - Cross-Validation: {}".format(best_perr))
+        print("Error - Final {}".format(perr))
 
     # Show final figure
     plt.subplots_adjust(hspace=0.35, wspace=0.4)
