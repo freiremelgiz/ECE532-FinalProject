@@ -1,5 +1,3 @@
-*version:* 1.2.0
-
 # ECE532 Final Project - Classifying a public dataset
 
 This repository contains the code for the final project of ECE532: Matrix Methods in Machine Learning. The final project consists on choosing a public dataset and classifying it using algorithms learned in the class.
@@ -70,10 +68,6 @@ Sometimes, the unregulated Least Squares problem can lead to classifier weights 
 
 
 ![formula](https://render.githubusercontent.com/render/math?math=min_\mathbf{w}||\mathbf{Xw}-\mathbf{y}||_2^2%2B\lambda||\mathbf{w}||_2^2)  
-
-$$
-R = a + B_2
-$$
 
 
 I solved the Ridge Regression problem for each dataset using the provided training data. The ![formula](https://render.githubusercontent.com/render/math?math=\lambda) parameter was varied between \[1e-6, 20\]. For each value, a different classifier weight vector was computed and used to classify the testing data. The figure below shows the percent error evolution as the L2 norm of the weight vector increases. In general, the percent error is expected to increase for low weight vector norms because the minimization burden is shifted from the error norm. However, sometimes a large weight vector norm amplifies noise in the feature measurements and results in larger percent error.
