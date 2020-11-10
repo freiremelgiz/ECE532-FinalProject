@@ -46,9 +46,8 @@ The Singular Value Decomposition of dataset 1 yields the singular values plotted
 <img src="https://github.com/freiremelgiz/ECE532_FinalProject/blob/master/resources/img/PCA_sigma.png" height="250"> <img src="https://github.com/freiremelgiz/ECE532_FinalProject/blob/master/resources/img/PCA_sigma_log.png" height="250">
 
 The magnitude of the singular values decreases rapidly. However, values remain relatively high until about index 20 for the first 3 datasets, and index 8 for the last 3 datasets. I will consider this and perform a low-rank approximation of the data matrix as  
-<p align="center">
-  ![formula](https://render.githubusercontent.com/render/math?math=\mathbf{X}_r=\sum_{i=1}^r\mathbf{u}_i\sigma_i\mathbf{v}_i^T)
-</p>
+
+![formula](https://render.githubusercontent.com/render/math?math=\mathbf{X}_r=\sum_{i=1}^r\mathbf{u}_i\sigma_i\mathbf{v}_i^T)
 
 ## Least Squares Classification
 I added a processing step to the Dataset class to convert the label vectors from the {0,+1} space to the {-1,+1} space to match the output of the sign() function.
@@ -68,7 +67,11 @@ Aside from dataset 6, which has very scarce data, the percent errors are very lo
 
 ## Tikhonov Regularization (Ridge Regression)
 Sometimes, the unregulated Least Squares problem can lead to classifier weights with large norms. This tends to cause unwanted noise amplification when performing classification of future data. Regularization techniques modify the Least Squares minimization problem by adding a regularizing term. In the case of Ridge Regression, the regularizing term is the ![formula](https://render.githubusercontent.com/render/math?math=\lambda)-parameterized L2 norm of the classifier weights.  
+
+
 ![formula](https://render.githubusercontent.com/render/math?math=min_\mathbf{w}||\mathbf{Xw}-\mathbf{y}||_2^2+\lambda||\mathbf{w}||_2^2)  
+
+
 I solved the Ridge Regression problem for each dataset using the provided training data. The ![formula](https://render.githubusercontent.com/render/math?math=\lambda) parameter was varied between \[1e-6, 20\]. For each value, a different classifier weight vector was computed and used to classify the testing data. The figure below shows the percent error evolution as the L2 norm of the weight vector increases. In general, the percent error is expected to increase for low weight vector norms because the minimization burden is shifted from the error norm. However, sometimes a large weight vector norm amplifies noise in the feature measurements and results in larger percent error.
 
 <img src="https://github.com/freiremelgiz/ECE532_FinalProject/blob/master/resources/img/Ridge.png" height="500">
