@@ -75,9 +75,21 @@ I solved the Ridge Regression problem for each dataset using the provided traini
 <img src="https://github.com/freiremelgiz/ECE532_FinalProject/blob/master/resources/img/Ridge.png" height="500">
 
 
+In order to select the best ![formula](https://render.githubusercontent.com/render/math?math=\lambda) parameter for each dataset, I held out 10% of the testing data to perform cross-validation across all the found classifiers. The ![formula](https://render.githubusercontent.com/render/math?math=\lambda) that performs best (least misclassifications) is selected and used on the rest of the testing data. The final performance of Ridge Regression for each dataset is summarized in the table below.
+
+| Dataset |  Error  |  ![formula](https://render.githubusercontent.com/render/math?math=\lambda) |
+| :----:  |  :---:  | :----: |
+|   1     |  0.20 % |  	 20	    |
+|   2     |  0.11 % |         20         |
+|   3     |  1.78 % |         20         |
+|   4     |  3.25 % |          8         |
+|   5     |  8.61 % |          8         |
+|   6     | 56.06 % |          5         |
+
+
 ## Project Timeline
 * **10/22/2020** Project Proposal Due
-* 10/26/2020  Principal Component Analysis
+ 10/26/2020  Principal Component Analysis
 * 11/02/2020  Least Squares Classification
 * 11/09/2020  SVD and Tikhonov Regularization
 * **11/17/2020** Update 1 Due
