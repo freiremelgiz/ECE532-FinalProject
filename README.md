@@ -86,12 +86,14 @@ In order to select the best ![formula](https://render.githubusercontent.com/rend
 |   5     |  9.97 % |  1.4e-6 |  1351 | 0.74 % |
 |   6     | 50.85 % |   19.95 |     7 | 0.00 % |
 
+Overall, the classifier performance decreased when using the regularized least squares classifier. Except for dataset 6 which showed a slight classification improvement when the L-2 norm of the classifier was reduced.
+
 
 ## Project Timeline
 * **10/22/2020** Project Proposal Due
  10/26/2020  Principal Component Analysis
 * 11/02/2020  Least Squares Classification
-* 11/09/2020  SVD and Tikhonov Regularization
+* 11/09/2020  Tikhonov Regularization
 * **11/17/2020** Update 1 Due
 * 11/23/2020  Hinge Loss Classification
 * **12/01/2020** Update 2 Due
