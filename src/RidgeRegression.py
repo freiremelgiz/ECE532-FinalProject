@@ -63,19 +63,22 @@ if __name__ == "__main__":
         cv_i = round(data.rows*0.1) # Hold out 10% data
         best_w = np.zeros(data.cols) # init
         best_perr = 100 # Init to max perr
+        best_la = 0 # Init best lambda
         for i in range(len(lamb_array)):
             y_hat = classify(data.X[:cv_i,:],W[:,i]) # Classify
             perr = get_perr(y_hat, data.y[:cv_i]) # Holdout error
             if(perr <= best_perr): # Prioritize low w norms
                 best_w = W[:,i] # Store weights
                 best_perr = perr # Store perr
+                best_la = lamb_array[i] # Store lambda
         # Final classification on rest of test data
         y_hat = classify(data.X[cv_i:,:],best_w) # Final classify
         perr = get_perr(y_hat, data.y[cv_i:]) # Final perr
 
         print("Cross-Validation size: {}".format(cv_i))
-        print("Error - Cross-Validation: {}".format(best_perr))
-        print("Error - Final {}".format(perr))
+        print("Error - Cross-Validation: {}%".format(best_perr.round(2)))
+        print("Best lambda: {}".format(best_la))
+        print("Error - Final {}%".format(perr.round(2)))
 
     # Show final figure
     plt.subplots_adjust(hspace=0.35, wspace=0.4)

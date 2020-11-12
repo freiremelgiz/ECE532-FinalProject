@@ -78,13 +78,13 @@ I solved the Ridge Regression problem for each dataset using the provided traini
 In order to select the best ![formula](https://render.githubusercontent.com/render/math?math=\lambda) parameter for each dataset, I held out 10% of the testing data to perform cross-validation across all the found classifiers. The ![formula](https://render.githubusercontent.com/render/math?math=\lambda) that performs best (least misclassifications) is selected and used on the rest of the testing data. The final performance of Ridge Regression for each dataset is summarized in the table below.
 
 | Dataset |  Error  |  ![formula](https://render.githubusercontent.com/render/math?math=\lambda) | Cross-Validation set size | Error: Holdout |
-| :----:  |  :---:  | :----: | 1 |
-|   1     |  0.20 % |  	 20	    |  1 | 1 |
-|   2     |  0.11 % |         20         |  3 | 1 |
-|   3     |  1.78 % |         20         |  3 | 1 |
-|   4     |  3.25 % |          8         |  3 | 1 |
-|   5     |  8.61 % |          8         |  3 | 1 |
-|   6     | 56.06 % |          5         |  3 | 1 |
+| :----:  |  :---:  | :-----: | :---: | :----: |
+|   1     |  0.28 % |    1e-6 |  1763 | 1.13 % |
+|   2     |  0.04 % |   19.95 |  1569 | 0.00 % |
+|   3     |  2.62 % |   19.95 |   500 | 0.00 % |
+|   4     |  3.52 % |  1.6e-5 |  1060 | 0.75 % |
+|   5     |  9.97 % |  1.4e-6 |  1351 | 0.74 % |
+|   6     | 50.85 % |   19.95 |     7 | 0.00 % |
 
 
 ## Project Timeline
