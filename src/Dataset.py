@@ -11,7 +11,7 @@ easy manipulation. There are 6 datasets.
 Constructor:
 dataset - integer representing which dataset to use [1,6]
 
-Instance variabls:
+Instance variables:
 self.X - Data matrix, each row is a datapoint
 self.y - Data labels, +1 for a quadcopter, 0 otherwise
 self.rows - Number of datapoints
