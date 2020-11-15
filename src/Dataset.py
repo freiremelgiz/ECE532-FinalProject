@@ -13,7 +13,7 @@ dataset - integer representing which dataset to use [1,6]
 
 Instance variables:
 self.X - Data matrix, each row is a datapoint
-self.y - Data labels, +1 for a quadcopter, 0 otherwise
+self.y - Data labels, +1 for a quadcopter, -1 otherwise
 self.rows - Number of datapoints
 self.cols - Number of features
 Each dataset will have a subset (_tr) of training data
