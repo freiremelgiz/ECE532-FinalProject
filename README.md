@@ -40,8 +40,8 @@ The `scipy.io.loadmat()` function cannot handle `.mat` files that were saved wit
 To solve this problem, I opened each dataset in MATLAB R2020a (which can handle the old files) and re-saved them in a newer format.
 The updated, but unmodified dataset files can be found in `~/resources/data/`.
 
-The Singular Value Decomposition of dataset 1 yields the singular values plotted in the images below.
 <img src="https://github.com/freiremelgiz/ECE532_FinalProject/blob/master/resources/img/PCA_sigma.png" height="250"> <img src="https://github.com/freiremelgiz/ECE532_FinalProject/blob/master/resources/img/PCA_sigma_log.png" height="250">
+**Figure 2**. Singular values of testing data plotted against their index (left) and on a log scale (right).
 
 The magnitude of the singular values decreases rapidly. However, values remain relatively high until about index 20 for the first 3 datasets, and index 8 for the last 3 datasets. I will consider this and perform a low-rank approximation of the data matrix as  
 
@@ -70,10 +70,14 @@ Sometimes, the unregulated Least Squares problem can lead to classifier weights 
 ![formula](https://render.githubusercontent.com/render/math?math=min_\mathbf{w}||\mathbf{Xw}-\mathbf{y}||_2^2%2B\lambda||\mathbf{w}||_2^2)  
 
 
-I solved the Ridge Regression problem for each dataset using the provided training data. The ![formula](https://render.githubusercontent.com/render/math?math=\lambda) parameter was varied between \[1e-6, 20\]. For each value, a different classifier weight vector was computed and used to classify the testing data. The figure below shows the percent error evolution as the L2 norm of the weight vector increases. In general, the percent error is expected to increase for low weight vector norms because the minimization burden is shifted from the error norm. However, sometimes a large weight vector norm amplifies noise in the feature measurements and results in larger percent error.
+I solved the Ridge Regression problem for each dataset using the provided training data. The ![formula](https://render.githubusercontent.com/render/math?math=\lambda) parameter was varied between \[1e-6, 20\].
+For each value, a different classifier weight vector was computed and used to classify the testing data.
+The Figure 3 shows the percent error evolution as the L2 norm of the weight vector increases.
+In general, the percent error is expected to increase for low weight vector norms because the minimization burden is shifted from the error norm.
+However, sometimes a large weight vector norm amplifies noise in the feature measurements and results in larger percent error.
 
 <img src="https://github.com/freiremelgiz/ECE532_FinalProject/blob/master/resources/img/Ridge.png" height="500">
-
+**Figure 3**. Classification percent error on test data plotted against the L2 norm of the weight vector.
 
 In order to select the best ![formula](https://render.githubusercontent.com/render/math?math=\lambda) parameter for each dataset, I held out 10% of the testing data to perform cross-validation across all the found classifiers. The ![formula](https://render.githubusercontent.com/render/math?math=\lambda) that performs best (least misclassifications) is selected and used on the rest of the testing data. The final performance of Ridge Regression for each dataset is summarized in the table below.
 
@@ -88,10 +92,19 @@ In order to select the best ![formula](https://render.githubusercontent.com/rend
 
 Overall, the classifier performance decreased when using the regularized least squares classifier. Except for dataset 6 which showed a slight classification improvement when the L-2 norm of the classifier was reduced.
 
+## Iterative Methods (Gradient Descent)
+When I first started implementing Gradient Descent algorithms I found out that convergence would be very slow for the selected datasets. For this reason, I developed a logging system to save convergence progress via gradient descent.
+The logging system is implemented in `~/src/IterReg.py`. This class provides an interface to save the most recently computed weights in a `.log` file. The class also provides a function to read these weights to serve as a hot-start for the gradient descent algorithm in future script runs. This way, I can save gradient descent progress and improve convergence.
+The logged weight vectors for each algorithm and dataset are all stored in `~/resources/log/`. And follow the naming convention `iter_ALGO_DATASET.log`. Where "ALGO" is the algorithm code and "DATASET" is the dataset number for these weights.
+
+<p align="center">
+  <img src="https://github.com/freiremelgiz/ECE532_FinalProject/blob/master/resources/img/example_IterReg.PNG" alt="IterReg" width="600">
+</p>
+**Figure 4**. Example run of `LeastSquares.py` for dataset 4 showing how the loss function value decreases after sime time iterating with the Gradient descent algorithm. When the program is run again, it will start the iteration with the last computed weight vector as the starting point.
 
 ## Project Timeline
 * **10/22/2020** Project Proposal Due
- 10/26/2020  Principal Component Analysis
+* 10/26/2020  Principal Component Analysis
 * 11/02/2020  Least Squares Classification
 * 11/09/2020  Tikhonov Regularization
 * **11/17/2020** Update 1 Due

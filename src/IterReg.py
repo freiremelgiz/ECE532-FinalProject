@@ -29,7 +29,7 @@ class IterReg():
         # TODO Check algo list
         script_path = realpath(__file__)[:-10] # Get abs path
         # Build file path
-        self.fpath = script_path + '../resources/log/iter_'+ algo+str(dataset)+'.log'
+        self.fpath = script_path + '../resources/log/iter_'+ algo+'_'+str(dataset)+'.log'
 
         # Store algo for save-dependent features
         self.algo = algo
