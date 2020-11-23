@@ -38,7 +38,7 @@ def get_loss_MSE(X, y, w): # Compute cost func
     return loss
 
 # Take a step in GD
-def step(X, y, w, tau):
+def step_GDLS(X, y, w, tau):
     grad = 2*X.T@(X@w - y) # Compute gradient
     w_new = w - tau*grad
     return w_new
@@ -108,7 +108,7 @@ if __name__ == "__main__":
     tau = 1/(np.linalg.norm(data.X_tr,2)**2) # Step size
     while((loss_gd-loss_tr) > 1): # While not converged
         try:
-            w_new = step(data.X_tr, data.y_tr, w, tau)
+            w_new = step_GDLS(data.X_tr, data.y_tr, w, tau)
             w = w_new
         except KeyboardInterrupt:
             break
