@@ -37,7 +37,6 @@ class Dataset():
         self._process_dataset(data) # Obtain the data matrices and labels
         self._get_dimensions()      # Find dimensions of the data
         self._convert_labels()      # Convert the labels to +1 -1 space
-        self._normalize()           # Normalize training data for GD
 
     # Extract X matrices and y vectors from dataset
     def _process_dataset(self,datafile):

@@ -45,7 +45,7 @@ def step(X, y, w, tau):
 
 if __name__ == "__main__":
     # Initialize a dataset
-    num_dataset = 4
+    num_dataset = 1
 
     data = Dataset(num_dataset) # Retrieve dataset object
 
@@ -96,7 +96,7 @@ if __name__ == "__main__":
 
     # Compare Gradient Descent with Closed Form
     print("\n-- Iterating Gradient Descent --")
-    logger = IterReg('GD',num_dataset) # Init logger
+    logger = IterReg('GDLS',num_dataset) # Init logger
     # Load weights
     try:
         w = logger.load() # Load saved weights
