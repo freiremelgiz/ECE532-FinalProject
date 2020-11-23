@@ -46,7 +46,6 @@ def step_GDLS(X, y, w, tau):
 if __name__ == "__main__":
     # Initialize a dataset
     num_dataset = 1
-
     data = Dataset(num_dataset) # Retrieve dataset object
 
     print("-- Using dataset {} --".format(num_dataset))
@@ -103,7 +102,7 @@ if __name__ == "__main__":
     except FileNotFoundError:
         w = np.zeros(data.X_tr.shape[1]) # Init to zeros
     loss_gd = get_loss_MSE(data.X_tr, data.y_tr, w) # Comp cost fun
-    print("Current Loss Value: {}".format(loss_gd.round(2)))
+    print("Hot-start Loss Value: {}".format(loss_gd.round(2)))
     print("Press Ctrl+C to stop and show results")
     tau = 1/(np.linalg.norm(data.X_tr,2)**2) # Step size
     while((loss_gd-loss_tr) > 1): # While not converged

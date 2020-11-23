@@ -15,8 +15,9 @@ dataset - integer representing which dataset to use [1,6]
 
 algo chart:
 GDLS - Gradient Descent for Least Squares problem
-
+GDHL - Gradient Descent for Hinge Loss problem
 """
+
 # List of algorithm codes available
 ALGOS = ('GDLS','GDHL')
 
