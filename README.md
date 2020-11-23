@@ -41,6 +41,7 @@ To solve this problem, I opened each dataset in MATLAB R2020a (which can handle 
 The updated, but unmodified dataset files can be found in `~/resources/data/`.
 
 <img src="https://github.com/freiremelgiz/ECE532_FinalProject/blob/master/resources/img/PCA_sigma.png" height="250"> <img src="https://github.com/freiremelgiz/ECE532_FinalProject/blob/master/resources/img/PCA_sigma_log.png" height="250">
+
 **Figure 2**. Singular values of testing data plotted against their index (left) and on a log scale (right).
 
 The magnitude of the singular values decreases rapidly. However, values remain relatively high until about index 20 for the first 3 datasets, and index 8 for the last 3 datasets. I will consider this and perform a low-rank approximation of the data matrix as  
@@ -77,6 +78,7 @@ In general, the percent error is expected to increase for low weight vector norm
 However, sometimes a large weight vector norm amplifies noise in the feature measurements and results in larger percent error.
 
 <img src="https://github.com/freiremelgiz/ECE532_FinalProject/blob/master/resources/img/Ridge.png" height="500">
+
 **Figure 3**. Classification percent error on test data plotted against the L2 norm of the weight vector.
 
 In order to select the best ![formula](https://render.githubusercontent.com/render/math?math=\lambda) parameter for each dataset, I held out 10% of the testing data to perform cross-validation across all the found classifiers. The ![formula](https://render.githubusercontent.com/render/math?math=\lambda) that performs best (least misclassifications) is selected and used on the rest of the testing data. The final performance of Ridge Regression for each dataset is summarized in the table below.
@@ -100,6 +102,7 @@ The logged weight vectors for each algorithm and dataset are all stored in `~/re
 <p align="center">
   <img src="https://github.com/freiremelgiz/ECE532_FinalProject/blob/master/resources/img/example_IterReg.PNG" alt="IterReg" width="600">
 </p>
+
 **Figure 4**. Example run of `LeastSquares.py` for dataset 4 showing how the loss function value decreases after sime time iterating with the Gradient descent algorithm. When the program is run again, it will start the iteration with the last computed weight vector as the starting point.
 
 ## Project Timeline
