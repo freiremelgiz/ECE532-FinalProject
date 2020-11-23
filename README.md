@@ -103,7 +103,7 @@ The logged weight vectors for each algorithm and dataset are all stored in `~/re
   <img src="https://github.com/freiremelgiz/ECE532_FinalProject/blob/master/resources/img/example_IterReg.PNG" alt="IterReg" width="600">
 </p>
 
-**Figure 4**. Example run of `LeastSquares.py` for dataset 4 showing how the loss function value decreases after sime time iterating with the Gradient descent algorithm. When the program is run again, it will start the iteration with the last computed weight vector as the starting point.
+**Figure 4**. Example run of `LeastSquares.py` for dataset 4 showing how the loss function value decreases after some time iterating with the Gradient descent algorithm. When the program is run again, it will start the iteration with the last computed weight vector as the starting point.
 
 ## Project Timeline
 * **10/22/2020** Project Proposal Due
