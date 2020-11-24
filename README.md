@@ -109,7 +109,7 @@ The logged weight vectors for each algorithm and dataset are all stored in `~/re
 The Hinge Loss cost function addresses the limitation of the Mean Squared Error cost function with regard to data outliers.
 In other words, Hinge Loss is insensitive to datapoints which are far away from the decision boundary.
 
-![formula](https://render.githubusercontent.com/render/math?math=min_\mathbf{w}\sum_{i=1}^N(1-y_i\mathbf{x}_i\mathbf{w}%29_%2B)
+![formula](https://render.githubusercontent.com/render/math?math=min_\mathbf{w}\sum_{i=1}^N%281-y_i\mathbf{x}_i\mathbf{w}%29_%2B)
 
 
 
