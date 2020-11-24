@@ -36,7 +36,6 @@ if __name__ == "__main__":
     data = Dataset(num_dataset) # Retrieve dataset object
 
     print("-- Using dataset {} --".format(num_dataset))
-    print("- Iterating Gradient Descent")
     logger = IterReg('GDHL',num_dataset) # Init logger GDHL
     # Load weights
     try:
@@ -44,9 +43,9 @@ if __name__ == "__main__":
     except FileNotFoundError:
         w = np.zeros(data.X_tr.shape[1]) # Init to zeros
     loss_gd = get_loss_HL(data.X_tr, data.y_tr, w) # Comp cost fun
-    print(loss_gd)
     print("Hot-start Loss Value: {}".format(loss_gd.round(2)))
     print("Press Ctrl+C to stop and show results")
+    print("Iterating Gradient Descent...")
     tau = 1/(np.linalg.norm(data.X_tr, 2)**2) # Step size
     descent = 1 # Init
     while(abs(descent) > 1e-6): # Converge when within 1e-5
