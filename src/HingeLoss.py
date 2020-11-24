@@ -32,7 +32,7 @@ def step_SGDHL():
 
 if __name__ == "__main__":
     # Initialize a dataset
-    num_dataset = 4
+    num_dataset = 1
     data = Dataset(num_dataset) # Retrieve dataset object
 
     print("-- Using dataset {} --".format(num_dataset))
@@ -47,7 +47,7 @@ if __name__ == "__main__":
     print(loss_gd)
     print("Hot-start Loss Value: {}".format(loss_gd.round(2)))
     print("Press Ctrl+C to stop and show results")
-    tau = 0.99/(np.linalg.norm(data.X_tr, 2)**2) # Step size
+    tau = 1/(np.linalg.norm(data.X_tr, 2)**2) # Step size
     descent = 1 # Init
     while(abs(descent) > 1e-6): # Converge when within 1e-5
         try:

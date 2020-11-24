@@ -111,6 +111,14 @@ In other words, Hinge Loss is insensitive to datapoints which are far away from 
 
 ![formula](https://render.githubusercontent.com/render/math?math=min_\mathbf{w}\sum_{i=1}^N%281-y_i\mathbf{x}_i\mathbf{w}%29_%2B)
 
+| Dataset |   Error  |
+| :----:  |  :----:  |
+|   1     |  2.67 %  |
+|   2     |  0.00 %  |
+|   3     |  2.34 %  |
+|   4     |  7.76 %  |
+|   5     | 13.93 %  |
+|   6     | 36.36 %  |
 
 
 ## Project Timeline
