@@ -45,7 +45,7 @@ def step_GDLS(X, y, w, tau):
 
 if __name__ == "__main__":
     # Initialize a dataset
-    num_dataset = 1
+    num_dataset = 3
     data = Dataset(num_dataset) # Retrieve dataset object
 
     print("-- Using dataset {} --".format(num_dataset))

@@ -15,7 +15,7 @@ from LeastSquares import classify
 def get_loss_HL(X, y, w): # Comp cost fun
     loss = 0
     for i in range(X.shape[0]):
-        loss += max(1 - y[i]*np.dot(X[i,:],w),0)
+        loss += max(1 - y[i]*np.dot(X[i,:],w),np.zeros(1)[0])
     return loss
 
 # Take a step in GD
@@ -32,7 +32,7 @@ def step_SGDHL():
 
 if __name__ == "__main__":
     # Initialize a dataset
-    num_dataset = 1
+    num_dataset = 6
     data = Dataset(num_dataset) # Retrieve dataset object
 
     print("-- Using dataset {} --".format(num_dataset))
@@ -44,13 +44,19 @@ if __name__ == "__main__":
     except FileNotFoundError:
         w = np.zeros(data.X_tr.shape[1]) # Init to zeros
     loss_gd = get_loss_HL(data.X_tr, data.y_tr, w) # Comp cost fun
+    print(loss_gd)
     print("Hot-start Loss Value: {}".format(loss_gd.round(2)))
     print("Press Ctrl+C to stop and show results")
     tau = 0.99/(np.linalg.norm(data.X_tr, 2)**2) # Step size
-    while(1):
+    descent = 1 # Init
+    while(abs(descent) > 1e-5): # Converge when within 1e-5
         try:
             w_new = step_GDHL(data.X_tr, data.y_tr, w, tau)
             w = w_new
+            # Check convergence
+            loss_gd_new = get_loss_HL(data.X_tr, data.y_tr, w)
+            descent = loss_gd - loss_gd_new
+            loss_gd = loss_gd_new
         except KeyboardInterrupt:
             break
     logger.save(w) # Save progress
