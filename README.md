@@ -105,6 +105,13 @@ The logged weight vectors for each algorithm and dataset are all stored in `~/re
 
 **Figure 4**. Example run of `LeastSquares.py` for dataset 4 showing how the loss function value decreases after some time iterating with the Gradient descent algorithm. When the program is run again, it will start the iteration with the last computed weight vector as the starting point.
 
+## Hinge Loss
+The Hinge Loss cost function addresses the limitation of the Mean Squared Error cost function with regard to data outliers.
+In other words, Hinge Loss is insensitive to datapoints which are far away from the decision boundary.
+
+![formula](https://render.githubusercontent.com/render/math?math=min_\mathbf{w}\sum_{i=1}^N(1-y_i\mathbf{x}_i\mathbf{w}%29_+)
+
+
 ## Project Timeline
 * **10/22/2020** Project Proposal Due
 * 10/26/2020  Principal Component Analysis

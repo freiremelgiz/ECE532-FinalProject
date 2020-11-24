@@ -32,7 +32,7 @@ def step_SGDHL():
 
 if __name__ == "__main__":
     # Initialize a dataset
-    num_dataset = 6
+    num_dataset = 4
     data = Dataset(num_dataset) # Retrieve dataset object
 
     print("-- Using dataset {} --".format(num_dataset))
@@ -49,7 +49,7 @@ if __name__ == "__main__":
     print("Press Ctrl+C to stop and show results")
     tau = 0.99/(np.linalg.norm(data.X_tr, 2)**2) # Step size
     descent = 1 # Init
-    while(abs(descent) > 1e-5): # Converge when within 1e-5
+    while(abs(descent) > 1e-6): # Converge when within 1e-5
         try:
             w_new = step_GDHL(data.X_tr, data.y_tr, w, tau)
             w = w_new
