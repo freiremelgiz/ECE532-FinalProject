@@ -4,36 +4,26 @@ __author__ = "Victor Freire"
 __email__ = "freiremelgiz@wisc.edu"
 
 """
-This script solves the Hinge Loss problem to
-train a linear classifier.
-
-The problem is solved iteratively via Gradient
-Descent for the specified dataset. The Gradient
-Descent method is programmed around a save-and-
-load architecture so that convergence progress is
-saved and each time the script is started, the
-algorithm can have a hot-start on the set of weights.
+This script solves the Support Vector Machine
+classification problem to train a set of linear
+weights.
 
 """
 
 import numpy as np
 from IterReg import IterReg
 from Dataset import Dataset
-from LeastSquares import get_perr
+from HingeLoss import get_loss_HL
 from LeastSquares import classify
+from LeastSquares import get_perr
 
 DATASET = 1
 
 """ Helper Functions """
-# Compute the loss function value Hinge Loss
-def get_loss_HL(X, y, w): # Comp cost fun
-    loss = 0
-    for i in range(X.shape[0]):
-        loss += max(1 - y[i]*np.dot(X[i,:],w),np.zeros(1)[0])
-    return loss
+get_loss_SVM = get_loss_HL # Same cost function for SVM and HL
 
-# Take a step in GD
-def step_GDHL(X, y, w, tau):
+# Take a step in GD (TODO)
+def step_GDSVM(X, y, w, tau):
     grad = 0 # Init to 0
     for i in range(X.shape[0]):
         grad -= 0.5*y[i]*(1 + np.sign(1 - y[i]*np.dot(X[i,:],w)))*X[i,:]
@@ -41,7 +31,7 @@ def step_GDHL(X, y, w, tau):
     return w_new
 
 # Take a step in SGD (TODO)
-def step_SGDHL():
+def step_SGDSVM():
     return
 
 
@@ -51,13 +41,13 @@ if __name__ == "__main__":
     data = Dataset(num_dataset) # Retrieve dataset object
 
     print("-- Using dataset {} --".format(num_dataset))
-    logger = IterReg('GDHL',num_dataset) # Init logger GDHL
+    logger = IterReg('GDSVM',num_dataset) # Init logger GDSVM
     # Load weights
     try:
         w = logger.load() # Load saved weights
     except FileNotFoundError:
         w = np.zeros(data.X_tr.shape[1]) # Init to zeros
-    loss_gd = get_loss_HL(data.X_tr, data.y_tr, w) # Comp cost fun
+    loss_gd = get_loss_SVM(data.X_tr, data.y_tr, w) # Comp cost fun
     print("Hot-start Loss Value: {}".format(loss_gd.round(2)))
     print("Press Ctrl+C to stop and show results")
     print("Iterating Gradient Descent...")
@@ -81,6 +71,6 @@ if __name__ == "__main__":
     loss_gd = get_loss_HL(data.X_tr, data.y_tr, w) # Comp cost fun
 
     # Output results
-    print("\nGradient Descent Hinge Loss classification:")
+    print("\nGradient Descent Support Vector Machine classification:")
     print("Percent labels misclassified: {}%".format(perr.round(2)))
     print("Training Loss Value: {}".format(loss_gd.round(2)))

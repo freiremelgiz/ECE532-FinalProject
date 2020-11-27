@@ -3,6 +3,22 @@
 __author__ = "Victor Freire"
 __email__ = "freiremelgiz@wisc.edu"
 
+"""
+This script performs least squares classification of
+the selected dataset solving the problem with the
+closed-form solution.
+
+This script also performs a low-rank approximation,
+informed by the PCA, and trains classifiers using
+Least Squares on the low-rank approximation of the
+training data.
+
+This script also solves the Least Squares problem
+iteratively via Gradient Descent and the results can
+be compared to the closed-form Least Squares solution
+"""
+
+DATASET = 1 # Select dataset [1,6]
 
 from Dataset import Dataset
 import numpy as np
@@ -45,7 +61,7 @@ def step_GDLS(X, y, w, tau):
 
 if __name__ == "__main__":
     # Initialize a dataset
-    num_dataset = 3
+    num_dataset = DATASET
     data = Dataset(num_dataset) # Retrieve dataset object
 
     print("-- Using dataset {} --".format(num_dataset))

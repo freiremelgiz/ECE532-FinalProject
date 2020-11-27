@@ -3,6 +3,12 @@
 __author__ = "Victor Freire"
 __email__ = "freiremelgiz@wisc.edu"
 
+"""
+This script performs Singular Value Decomposition of
+each dataset and plots the singular values against their
+index on a linear and log scale.
+
+"""
 
 from Dataset import Dataset
 import numpy as np
@@ -20,8 +26,6 @@ for i in range(1,7): # Six datasets
     data = Dataset(num_dataset) # Test dataset 1
 
     # Remove mean from data
-    #print(data.X.shape)
-    #print(np.mean(data.X,0).shape)
     X_m = data.X - np.mean(data.X,0)
 
     # Find skinny SVD of data matrix
@@ -35,7 +39,7 @@ for i in range(1,7): # Six datasets
     ax_lin.plot(s)
 
 
-
+# Plot settings
 ax_lin.set_xlabel('Sing value index $i$', fontsize=16)
 ax_lin.set_ylabel('$\sigma_i$', fontsize=16)
 ax_lin.set_title('Singular Values', fontsize=18)

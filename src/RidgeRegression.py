@@ -3,12 +3,26 @@
 __author__ = "Victor Freire"
 __email__ = "freiremelgiz@wisc.edu"
 
+"""
+This script solves the Tikhonov Regularization
+(aka Ridge Regression) problem to train a linear
+classifier.
+
+The problem is solved for all datasets. The cost function
+is plotted against the norm of the classifier weights to
+visualize the effect of the regularization.
+
+Cross-validation is performed on a hold-out set to determine
+the best regularizing parameter /lambda
+
+"""
 
 from Dataset import Dataset
 from LeastSquares import get_perr
 from LeastSquares import classify
 import numpy as np
 import matplotlib.pyplot as plt
+
 
 """ Helper Functions """
 # Returns the weights using the solution to Ridge Regression

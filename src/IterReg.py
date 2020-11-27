@@ -16,10 +16,11 @@ dataset - integer representing which dataset to use [1,6]
 algo chart:
 GDLS - Gradient Descent for Least Squares problem
 GDHL - Gradient Descent for Hinge Loss problem
+GDSVM - Gradient Descent for Support Vector Machine
 """
 
 # List of algorithm codes available
-ALGOS = ('GDLS','GDHL')
+ALGOS = ('GDLS','GDHL','GDSVM')
 
 import numpy as np
 from os.path import realpath # Absolute path
