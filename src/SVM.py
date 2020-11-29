@@ -17,7 +17,8 @@ from HingeLoss import get_loss_HL
 from LeastSquares import classify
 from LeastSquares import get_perr
 
-DATASET = 3
+DATASET = 5
+ALGO = 'GDSVM'
 
 LAMB_ARR = (1e-6,19.95,19.95,1.6e-5,1.4e-6,19.95) # From CV Ridge Reg
 
@@ -42,9 +43,13 @@ if __name__ == "__main__":
     # Initialize a dataset
     num_dataset = DATASET
     data = Dataset(num_dataset) # Retrieve dataset object
+    # Initialize IterReg feature
+    algo = ALGO
+    logger = IterReg(algo,num_dataset) # Init logger GDSVM
 
-    print("-- Using dataset {} --".format(num_dataset))
-    logger = IterReg('GDSVM',num_dataset) # Init logger GDSVM
+    # Print Header
+    print("-- Using dataset {} | ALGO: {} --".format(num_dataset, algo))
+
     # Load weights
     try:
         w = logger.load() # Load saved weights
@@ -55,7 +60,7 @@ if __name__ == "__main__":
     print("Hot-start Loss Value: {}".format(loss_gd.round(2)))
     print("Using lambda: {}".format(lamb))
     print("Press Ctrl+C to stop and show results")
-    print("Iterating Gradient Descent...")
+    print("Iterating...")
     tau = 1/(np.linalg.norm(data.X_tr, 2)**2) # Step size
     descent = 1 # Init
     tol = 1e-8 # Convergence tolerance

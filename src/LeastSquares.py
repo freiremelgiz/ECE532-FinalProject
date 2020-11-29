@@ -19,6 +19,7 @@ be compared to the closed-form Least Squares solution
 """
 
 DATASET = 1 # Select dataset [1,6]
+ALGO = 'GDLS'
 
 from Dataset import Dataset
 import numpy as np
@@ -64,7 +65,9 @@ if __name__ == "__main__":
     num_dataset = DATASET
     data = Dataset(num_dataset) # Retrieve dataset object
 
-    print("-- Using dataset {} --".format(num_dataset))
+    # Print Header
+    print("/// Least Squares Training via Closed Form ///")
+    print("-- Using dataset {} | Closed Form Solution --".format(num_dataset))
 
     # Use helper functions to get percent error
     w = trainLSOrig(data.X_tr, data.y_tr) # Get weights with training set
@@ -73,7 +76,6 @@ if __name__ == "__main__":
     loss_tr = get_loss_MSE(data.X_tr, data.y_tr, w) # Compute cost func
 
     # Output results
-    print("Original Least Squares classification:")
     print("Percent labels misclassified: {}%".format(perr.round(2)))
     print("Training Loss Value: {}".format(loss_tr.round(2)))
 
@@ -103,15 +105,21 @@ if __name__ == "__main__":
     loss_r = get_loss_MSE(X_r, data.y_tr, w) # Compute cost func
 
     # Output results
-    print("Least Squares with Rank-{} approximation:".format(rank))
+    print("\n/// Least Squares Training via Rank-{} Approximation ///".format(rank))
     print("Percent labels misclassified: {}%".format(perr.round(2)))
     print("Training Loss Value: {}".format(loss_r.round(2)))
 
 
 
-    # Compare Gradient Descent with Closed Form
-    print("\n-- Iterating Gradient Descent --")
-    logger = IterReg('GDLS',num_dataset) # Init logger
+    ## Compare Gradient Descent with Closed Form
+    # Initialize IterReg feature
+    algo = ALGO
+    logger = IterReg(algo,num_dataset) # Init logger
+
+    # Print Header
+    print("\n /// Least Squares Training with Gradient Descent ///")
+    print("-- Using dataset {} | ALGO: {} --".format(num_dataset, algo))
+
     # Load weights
     try:
         w = logger.load() # Load saved weights
@@ -120,6 +128,7 @@ if __name__ == "__main__":
     loss_gd = get_loss_MSE(data.X_tr, data.y_tr, w) # Comp cost fun
     print("Hot-start Loss Value: {}".format(loss_gd.round(2)))
     print("Press Ctrl+C to stop and show results")
+    print("Iterating...")
     tau = 1/(np.linalg.norm(data.X_tr,2)**2) # Step size
     while((loss_gd-loss_tr) > 1): # While not converged
         try:

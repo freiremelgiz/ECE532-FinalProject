@@ -23,6 +23,7 @@ from LeastSquares import get_perr
 from LeastSquares import classify
 
 DATASET = 1
+ALGO = 'GDHL'
 
 """ Helper Functions """
 # Compute the loss function value Hinge Loss
@@ -49,9 +50,13 @@ if __name__ == "__main__":
     # Initialize a dataset
     num_dataset = DATASET
     data = Dataset(num_dataset) # Retrieve dataset object
+    # Initialize IterReg feature
+    algo = ALGO
+    logger = IterReg(algo,num_dataset) # Init logger GDHL
 
-    print("-- Using dataset {} --".format(num_dataset))
-    logger = IterReg('GDHL',num_dataset) # Init logger GDHL
+    # Print Header
+    print("-- Using dataset {} | ALGO: {} --".format(num_dataset, algo))
+
     # Load weights
     try:
         w = logger.load() # Load saved weights
@@ -60,7 +65,7 @@ if __name__ == "__main__":
     loss_gd = get_loss_HL(data.X_tr, data.y_tr, w) # Comp cost fun
     print("Hot-start Loss Value: {}".format(loss_gd.round(2)))
     print("Press Ctrl+C to stop and show results")
-    print("Iterating Gradient Descent...")
+    print("Iterating...")
     tau = 1/(np.linalg.norm(data.X_tr, 2)**2) # Step size
     descent = 1 # Init
     tol = 1e-6 # Convergence tolerance
