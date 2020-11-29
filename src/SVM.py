@@ -17,7 +17,7 @@ from HingeLoss import get_loss_HL
 from LeastSquares import classify
 from LeastSquares import get_perr
 
-DATASET = 5
+DATASET = 1
 ALGO = 'GDSVM'
 
 LAMB_ARR = (1e-6,19.95,19.95,1.6e-5,1.4e-6,19.95) # From CV Ridge Reg

@@ -143,7 +143,7 @@ The Support Vector Machine problem was solved similarly to the Hinge Loss one vi
 |   2     |  0.00 %  |  0.00 %  |      19.95 |
 |   3     |  2.34 %  |  2.22 %  |      19.95 |
 |   4     |  7.76 %  |  11.06 %  |     1.6e-5 |
-|   5     | 13.93 %  |  18.21 %  |     1.4e-6 |
+|   5     | 13.93 %  |  13.93 %  |     1.4e-6 |
 |   6     | 36.36 %  | 36.36 %  |      19.95 |
 
 
