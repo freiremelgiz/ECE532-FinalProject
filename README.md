@@ -53,6 +53,8 @@ I added a processing step to the Dataset class to convert the label vectors from
 
 The first classification was a simple Least Squares training the weight vector with the training data provided in the datasets. Then I classified the testing data on each dataset. Using the results from Principal Component Analysis, I decided to perform the Least Squares classification on a low-rank approximation of the training data matrix. The rank was chosen based on the trend of singular values found. The results are summarized in the table below.
 
+**Table 2**. Least Squares classification results. Also shows results when the weights were trained on a low-rank approximation of the training data matrix. The rank of the approximation was informed by the PCA.
+
 | Dataset |  Error: Full-rank  | Approximation rank |   Error: Low-rank  |
 | :----:  |  :--------------:  | :----------------: |  :---------------: |
 |   1     |         0.20 %     |  	 20	    |       32.08 %      |
@@ -83,6 +85,8 @@ However, sometimes a large weight vector norm amplifies noise in the feature mea
 
 In order to select the best ![formula](https://render.githubusercontent.com/render/math?math=\lambda) parameter for each dataset, I held out 10% of the testing data to perform cross-validation across all the found classifiers. The ![formula](https://render.githubusercontent.com/render/math?math=\lambda) that performs best (least misclassifications) is selected and used on the rest of the testing data. The final performance of Ridge Regression for each dataset is summarized in the table below.
 
+**Table 3**. Tikhonov Regularization classification results. Along with cross-validation performance parameters.
+
 | Dataset |  Error  |  ![formula](https://render.githubusercontent.com/render/math?math=\lambda) | Cross-Validation set size | Error: Holdout |
 | :----:  |  :---:  | :-----: | :---: | :----: |
 |   1     |  0.28 % |    1e-6 |  1763 | 1.13 % |
@@ -105,20 +109,32 @@ The logged weight vectors for each algorithm and dataset are all stored in `~/re
 
 **Figure 4**. Example run of `HingeLoss.py` for dataset 1 showing how the loss function value decreases after some time iterating with the Gradient descent algorithm. When the program is run again, it will start the iteration with the last computed weight vector as the starting point.
 
-## Hinge Loss
+## Hinge Loss and Support Vector Machine
 The Hinge Loss cost function addresses the limitation of the Mean Squared Error cost function with regard to data outliers.
 In other words, Hinge Loss is insensitive to datapoints which are far away from the decision boundary.
 
 ![formula](https://render.githubusercontent.com/render/math?math=min_\mathbf{w}\sum_{i=1}^N%281-y_i\mathbf{x}_i\mathbf{w}%29_%2B)
 
-| Dataset |   Error  |
-| :----:  |  :----:  |
-|   1     |  2.67 %  |
-|   2     |  0.00 %  |
-|   3     |  2.34 %  |
-|   4     |  7.76 %  |
-|   5     | 13.93 %  |
-|   6     | 36.36 %  |
+The Hinge Loss cost function is convex. It has one non-differentiable point. This point is addressed with the concept of sub-gradients. I chose the sub-gradient to be 0 at this point because this is a popular choice and leads to a compact gradient definition. I solved the minimization problem with Gradient Descent, leveraging the `IterReg.py` architecture to save convergence progress.
+
+
+The Support Vector Machine classification algorithm uses the Hinge Loss cost function with a L2 norm regularization term. This regularization term ensures that the minimization converges to the max-margin decision boundary. This is the boundary at the maximum distance from the closest datapoints.
+
+![formula](https://render.githubusercontent.com/render/math?math=min_\mathbf{w}\sum_{i=1}^N%281-y_i\mathbf{x}_i\mathbf{w}%29_%2B%2B||\mathbf{w}||_2^2)
+
+The Support Vector Machine problem was solved similarly to the Hinge Loss one via Gradient Descent. The regularization parameter ![formula](https://render.githubusercontent.com/render/math?math=\lambda) was chosen equal to the results of the Cross-Validation performed with Ridge Regression.
+
+
+**Table 4**. Hinge Loss and Support Vector Machine classification results.
+
+| Dataset |   Error: HL  |  Error: SVM  |
+| :----:  |  :----:  |  :----:  |
+|   1     |  2.67 %  |  1 %  |
+|   2     |  0.00 %  |  1 %  |
+|   3     |  2.34 %  |  1 %  |
+|   4     |  7.76 %  |  1 %  |
+|   5     | 13.93 %  |  1 %  |
+|   6     | 36.36 %  |  1 %  |
 
 
 ## Project Timeline

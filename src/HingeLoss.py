@@ -47,7 +47,7 @@ def step_SGDHL():
 
 if __name__ == "__main__":
     # Initialize a dataset
-    num_dataset = 1
+    num_dataset = DATASET
     data = Dataset(num_dataset) # Retrieve dataset object
 
     print("-- Using dataset {} --".format(num_dataset))
@@ -63,7 +63,8 @@ if __name__ == "__main__":
     print("Iterating Gradient Descent...")
     tau = 1/(np.linalg.norm(data.X_tr, 2)**2) # Step size
     descent = 1 # Init
-    while(abs(descent) > 1e-6): # Converge when within 1e-5
+    tol = 1e-6 # Convergence tolerance
+    while(abs(descent) > tol): # Converge when within tol
         try:
             w_new = step_GDHL(data.X_tr, data.y_tr, w, tau)
             w = w_new
