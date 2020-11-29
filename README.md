@@ -109,6 +109,16 @@ The logged weight vectors for each algorithm and dataset are all stored in `~/re
 
 **Figure 4**. Example run of `HingeLoss.py` for dataset 1 showing how the loss function value decreases after some time iterating with the Gradient descent algorithm. When the program is run again, it will start the iteration with the last computed weight vector as the starting point.
 
+**Table 4**. Algorithm `ALGO` code description. These descriptions are also provided in `IterReg.py`. The program also checks to make sure the algorithm code is valid and implemented.
+
+| ALGO |   Description  |
+| :----:  |  :----:  |
+|  GDLS   |  Gradient Descent for Least Squares problem  |
+|  GDHL   |  Gradient Descent for Hinge Loss problem  |
+|  GDSVM  |  Gradient Descent for Support Vector Machine problem  |
+
+
+
 ## Hinge Loss and Support Vector Machine
 The Hinge Loss cost function addresses the limitation of the Mean Squared Error cost function with regard to data outliers.
 In other words, Hinge Loss is insensitive to datapoints which are far away from the decision boundary.
@@ -125,16 +135,16 @@ The Support Vector Machine classification algorithm uses the Hinge Loss cost fun
 The Support Vector Machine problem was solved similarly to the Hinge Loss one via Gradient Descent. The regularization parameter ![formula](https://render.githubusercontent.com/render/math?math=\lambda) was chosen equal to the results of the Cross-Validation performed with Ridge Regression.
 
 
-**Table 4**. Hinge Loss and Support Vector Machine classification results.
+**Table 5**. Hinge Loss and Support Vector Machine classification results.
 
-| Dataset |   Error: HL  |  Error: SVM  |
-| :----:  |  :----:  |  :----:  |
-|   1     |  2.67 %  |  1 %  |
-|   2     |  0.00 %  |  1 %  |
-|   3     |  2.34 %  |  1 %  |
-|   4     |  7.76 %  |  1 %  |
-|   5     | 13.93 %  |  1 %  |
-|   6     | 36.36 %  |  1 %  |
+| Dataset |   Error: HL  |  Error: SVM  |  ![formula](https://render.githubusercontent.com/render/math?math=\lambda)  |
+| :----:  |  :----:  |  :----:  | :-----: |
+|   1     |  2.67 %  |  2.93 %  |       1e-6 |
+|   2     |  0.00 %  |  0.00 %  |      19.95 |
+|   3     |  2.34 %  |  1 %  |      19.95 |
+|   4     |  7.76 %  |  1 %  |     1.6e-5 |
+|   5     | 13.93 %  |  1 %  |     1.4e-6 |
+|   6     | 36.36 %  | 36.36 %  |      19.95 |
 
 
 ## Project Timeline
