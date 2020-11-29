@@ -165,6 +165,6 @@ The Support Vector Machine problem was solved similarly to the Hinge Loss one vi
 
 ## References
 
-[Liang Zhao](mailto:lzhao9@gmu.edu) - George Mason University - [Dataset](http://mason.gmu.edu/~lzhao9/materials/data/UAV/)
+[Liang Zhao](mailto:lzhao9@gmu.edu) - [George Mason University](https://www2.gmu.edu/) - [Dataset](http://mason.gmu.edu/~lzhao9/materials/data/UAV/)
 
 A. Alipour-Fanid, M. Dabaghchian, N. Wang, P. Wang, L. Zhao and K. Zeng, 'Machine Learning-Based Delay-Aware UAV Detection and Operation Mode Identification Over Encrypted Wi-Fi Traffic,' in IEEE Transactions on Information Forensics and Security, vol. 15, pp. 2346-2360, 2020.
