@@ -17,10 +17,11 @@ algo chart:
 GDLS - Gradient Descent for Least Squares problem
 GDHL - Gradient Descent for Hinge Loss problem
 GDSVM - Gradient Descent for Support Vector Machine
+SGDNN - Stochastic Gradient Descent for Neural Network
 """
 
 # List of algorithm codes available
-ALGOS = ('GDLS','GDHL','GDSVM')
+ALGOS = ('GDLS','GDHL','GDSVM','SGDNN')
 
 import numpy as np
 from os.path import realpath # Absolute path
@@ -38,15 +39,64 @@ class IterReg():
         script_path = realpath(__file__)[:-10] # Get abs path
         self.fpath = script_path + '../resources/log/iter_'+ algo+'_'+str(dataset)+'.log'
 
-    # Save data (numpy array) in logfile
-    def save(self, data):
-        np.savetxt(self.fpath,data)
+        # Use correct encoding - Legacy compatibility
+        if 'SGDNN'== algo:
+            self.save = self._save_NN
+            self.load = self._load_NN
+        else:
+            self.save = self._save_convex
+            self.load = self._load_convex
 
-    # Load computed value in logfile
-    def load(self):
+    # Read log file into array of floats
+    def _read_arr(self):
         flog = open(self.fpath) # Open file for reading
         raw = flog.read()
         flog.close() # Close file
         str_arr = raw.strip('[]').split('\n') # Strip and Split
         arr = np.array([float(i) for i in str_arr[:-1]]) # Convert to arr
         return(arr)
+
+    # Save array into log file
+    def _save_arr(self, data):
+        np.savetxt(self.fpath,data)
+
+    # Save data (numpy array) in logfile for convex loss functions
+    def _save_convex(self, data):
+        self._save_arr(data)
+
+    # Load computed value in logfile for convex loss functions
+    def _load_convex(self):
+        return self._read_arr()
+
+    # Save data in logfile for Neural Network
+    def _save_NN(self, loss_new, nodes_new, W, v):
+        try:
+            arr = self._read_arr() # Read array from log file
+            loss = arr[0] # Loss value is 1st element
+            nodes = int(arr[1]) # Number of nodes is 2nd element
+
+            # Check if less loss and at least same number of nodes
+            if(nodes_new < nodes or loss_new > loss):
+                return 1 # Exit with code (No action)
+        except FileNotFoundError: # Save if no file exists
+            pass
+
+        coded = W.reshape(W.shape[0]*W.shape[1]) # Flatten W
+        coded = np.hstack((loss_new, nodes_new, coded, v[:,0])) # Encode
+        self._save_arr(coded) # Save to log
+        return 0
+
+    # Load weights from logfile for Neural Network
+    def _load_NN(self):
+        arr = self._load_convex()
+        nodes = int(arr[1]) # Number of nodes is 2nd element
+        v = arr[-nodes:].reshape((nodes,1)) # Last nodes entries are v
+        W = arr[2:-nodes] # Extract flattened W
+        W = W.reshape((nodes,int(len(W)/nodes))) # Reshape into rxn
+        return W, v
+
+    # Load the best loss function of Neural Network SGD
+    def load_loss(self):
+        arr = self._read_arr() # Read array from log file
+        loss = arr[0] # Loss value is 1st element
+        return loss
