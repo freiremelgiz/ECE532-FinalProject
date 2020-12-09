@@ -23,7 +23,7 @@ from LeastSquares import get_nerr
 
 DATASET = 1
 ALGO = 'SGDNN'
-NODES = -1 # Use -1 to inherit the number of nodes from existing logs
+NODES = 450 # Use -1 to inherit the number of nodes from existing logs
            # Specify a positive number to override and attempt convergence
            # If no log available, default is 200 nodes
 
@@ -103,10 +103,12 @@ if __name__ == "__main__":
 
     #print("Hot-start Loss Value: {}".format(loss_gd.round(2)))
     print("Press Ctrl+C to stop and show results")
-    print("Iterating...")
+    print("Training...")
     tau = 1/(np.linalg.norm(data.X_tr, 2)**2) # Step size
     tau = 0.01
     sparser = 0 # Display loss only
+    epoch_size = data.X_tr.shape[0] # 1 epoch is iterating m times
+
     while(1): # Converge until user stop
         try:
             # Take a step
@@ -114,8 +116,8 @@ if __name__ == "__main__":
 
             # Display progress
             loss_nn_new = get_loss_NN(Xb, data.y_tr, W, v)
-            if(sparser % 50 == 0): # Show only every n iter
-                print("Training loss: {}".format(loss_nn_new.round(4)))
+            if(sparser % epoch_size == 0): # Show only every epoch iter
+                print("Epoch: {} | Loss: {}".format(int(sparser/epoch_size),loss_nn_new.round(4)))
             sparser += 1
 
             # Check for new minimum

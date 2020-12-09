@@ -158,15 +158,19 @@ In summary, the changes allow the training of neural networks to start from rand
 
 ## Neural Network Classification
 A neural network with one hidden layer and enough nodes can be used to approximate any function. I use this theorem to train a neural network to approximate a complex decision boundary for my datasets.
+The objective function I minimized to train the neural network is the Squared Error Loss:
+
+![formula](https://render.githubusercontent.com/render/math?math=min_\mathbf{w}\sum_{i=1}^N\frac{1}{2}%28\hat{y}_i-y_i%29^2)
+
 
 | Dataset |   Error: NN  |  Hidden Nodes  |
 | :----:  |  :----:  |  :----:  |
-|   1     |  2.67 %  |  2.93 %  |
-|   2     |  0.00 %  |  0.00 %  |
-|   3     |  2.34 %  |  2.22 %  |
-|   4     |  7.76 %  |  6.70 %  |
-|   5     | 13.93 %  |  13.93 % |
-|   6     | 36.36 %  | 36.36 %  |
+|   1     |  2.67 %  |  200  |
+|   2     |  0.00 %  |  200  |
+|   3     |  2.34 %  |  200  |
+|   4     |  7.76 %  |  200  |
+|   5     | 13.93 %  |  200  |
+|   6     | 16.67 %  |  200  |
 
 
 
