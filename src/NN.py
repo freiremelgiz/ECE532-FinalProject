@@ -21,9 +21,9 @@ from IterReg import IterReg
 from LeastSquares import get_perr
 from LeastSquares import get_nerr
 
-DATASET = 1
+DATASET = 2
 ALGO = 'SGDNN'
-NODES = 450 # Use -1 to inherit the number of nodes from existing logs
+NODES = 300 # Use -1 to inherit the number of nodes from existing logs
            # Specify a positive number to override and attempt convergence
            # If no log available, default is 200 nodes
 

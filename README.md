@@ -162,11 +162,21 @@ The objective function I minimized to train the neural network is the Squared Er
 
 ![formula](https://render.githubusercontent.com/render/math?math=min_\mathbf{w}\sum_{i=1}^N\frac{1}{2}%28\hat{y}_i-y_i%29^2)
 
+Where
+
+![formula](https://render.githubusercontent.com/render/math?math=\hat{y}_i=\sigma%28\sum_{k=1}^rv_k\sigma%28\sum_{j=1}^nx_{ij}w_{kj}%29%29)
+
+And the final classification is performed with
+
+![formula](https://render.githubusercontent.com/render/math?math=\hat{d}_i=sign%28\hat{y}_i%29)
+
+
+
 
 | Dataset |   Error: NN  |  Hidden Nodes  |
 | :----:  |  :----:  |  :----:  |
 |   1     |  2.67 %  |  200  |
-|   2     |  0.00 %  |  200  |
+|   2     |  0.00 %  |  300  |
 |   3     |  2.34 %  |  200  |
 |   4     |  7.76 %  |  200  |
 |   5     | 13.93 %  |  200  |
