@@ -75,8 +75,8 @@ class IterReg():
             loss = arr[0] # Loss value is 1st element
             nodes = int(arr[1]) # Number of nodes is 2nd element
 
-            # Check if less loss and at least same number of nodes
-            if(nodes_new < nodes or loss_new > loss):
+            # Check if strictly less loss
+            if(loss_new >= loss):
                 return 1 # Exit with code (No action)
         except FileNotFoundError: # Save if no file exists
             pass
@@ -100,3 +100,9 @@ class IterReg():
         arr = self._read_arr() # Read array from log file
         loss = arr[0] # Loss value is 1st element
         return loss
+
+    # Load the number of nodes used on log file
+    def load_nodes(self):
+        arr = self._read_arr() # Read array from log file
+        nodes = int(arr[1]) # Number of nodes is 2nd element
+        return nodes

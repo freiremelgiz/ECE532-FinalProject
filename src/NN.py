@@ -23,7 +23,9 @@ from LeastSquares import get_nerr
 
 DATASET = 1
 ALGO = 'SGDNN'
-
+NODES = -1 # Use -1 to inherit the number of nodes from existing logs
+           # Specify a positive number to override and attempt convergence
+           # If no log available, default is 200 nodes
 
 """ Helper Functions """
 # Activation Function
@@ -72,47 +74,77 @@ if __name__ == "__main__":
 
     # Expand feature vectors for bias term
     Xb = np.hstack((np.ones((data.X_tr.shape[0],1)), data.X_tr))
-    nodes = 100 # Number of hidden nodes
+
+    # Find number of nodes
+    NODES = int(NODES) # Force int
+    if NODES == -1: # Inherit
+        try:
+            nodes = logger.load_nodes()
+        except FileNotFoundError:
+            nodes = 200 # Default
+    elif NODES < 1:
+        raise RuntimeError("Number of hidden nodes must be greater than 0")
+    else:
+        nodes = NODES # Force
 
     # Init weights (Non-convex, random init)
     W = np.random.randn(nodes,Xb.shape[1]) # Init to random
     v = np.random.randn(nodes,1) # Init to random
+    # Init best weights
+    try:
+        W_best, v_best = logger.load() # Load current best
+        loss_nn_best = logger.load_loss()
+    except FileNotFoundError: # Best are random if no log
+        W_best = W
+        v_best = v
+        loss_nn_best = get_loss_NN(Xb, data.y_tr, W, v)
 
     # Load best loss function
-    loss_nn_best = logger.load_loss()
 
     #print("Hot-start Loss Value: {}".format(loss_gd.round(2)))
     print("Press Ctrl+C to stop and show results")
     print("Iterating...")
     tau = 1/(np.linalg.norm(data.X_tr, 2)**2) # Step size
-    tau = 0.001
+    tau = 0.01
+    sparser = 0 # Display loss only
     while(1): # Converge until user stop
         try:
+            # Take a step
             W_new, v_new = step_SGDNN(Xb, data.y_tr, W, v, tau)
-            W = W_new
-            v = v_new
-            # Check for new minimum
+
+            # Display progress
             loss_nn_new = get_loss_NN(Xb, data.y_tr, W, v)
+            if(sparser % 50 == 0): # Show only every n iter
+                print("Training loss: {}".format(loss_nn_new.round(4)))
+            sparser += 1
+
+            # Check for new minimum
             if(loss_nn_new < loss_nn_best):
                 print("New minimum found, continue iterating...")
-                loss_nn_best = 0 #Display only once
+                loss_nn_best = loss_nn_new # Update best loss
+                W_best = W_new
+                v_best = v_new
+
+            # Update weights with new value
+            W = W_new
+            v = v_new
+
         except KeyboardInterrupt:
             break
 
     print("\nStochastic Gradient Descent Neural Network classification:")
-    discarded = logger.save(loss_nn_new, nodes, W, v) # Save progress
+    discarded = logger.save(loss_nn_best, nodes, W_best, v_best) # Save progress
 
     # Check if progress was logged
     if discarded:
         print("Discarded loss: {}".format(loss_nn_new.round(2)))
-        W, v = logger.load() # Load better weights
 
     # Compute metrics with new W
     # Expand feature vectors for bias term
     X = np.hstack((np.ones((data.X.shape[0],1)), data.X))
-    y_hat = classify_NN(X,W,v) # Classify test set
+    y_hat = classify_NN(X,W_best,v_best) # Classify test set
     perr = get_perr(y_hat,data.y) # Get percent error
-    loss_nn = get_loss_NN(Xb, data.y_tr, W, v) # Comp cost fun
+    loss_nn = get_loss_NN(Xb, data.y_tr, W_best, v_best) # Comp cost fun
 
     # Output results
     if not discarded:

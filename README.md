@@ -116,7 +116,7 @@ The logged weight vectors for each algorithm and dataset are all stored in `~/re
 |  GDLS   |  Gradient Descent for Least Squares problem  |
 |  GDHL   |  Gradient Descent for Hinge Loss problem  |
 |  GDSVM  |  Gradient Descent for Support Vector Machine problem  |
-
+|  SGDNN  |  Stochastic Gradient Descent for Neural Network training  |
 
 
 ## Hinge Loss and Support Vector Machine
@@ -145,6 +145,29 @@ The Support Vector Machine problem was solved similarly to the Hinge Loss one vi
 |   4     |  7.76 %  |  6.70 %  |     1.6e-5 |
 |   5     | 13.93 %  |  13.93 %  |     1.4e-6 |
 |   6     | 36.36 %  | 36.36 %  |      19.95 |
+
+
+## Non-Convex Optimization (IterReg)
+Training a neural network with backpropagation using Stochastic Gradient Descent involves solving a non-convex optimization problem.
+My previous implementation of the `IterReg` feature worked well for convex optimization where there is one global minimum.
+However, in non-convex optimization there can be any number of local minimum where the solution may get stuck using gradient descent.
+In practice, this problem is solved starting the training from random weights each time. This is a different demand than my prevous hot-start implementation of `IterReg`.
+
+I modified the `IterReg` feature to check for better performing weights with respect to the cost function if this is a non-convex algorithm before storing the new set of weights into the log files.
+In summary, the changes allow the training of neural networks to start from random values and converge to different minima each runtime. However, the `IterReg` feature will only store the best-performing weights.
+
+## Neural Network Classification
+A neural network with one hidden layer and enough nodes can be used to approximate any function. I use this theorem to train a neural network to approximate a complex decision boundary for my datasets.
+
+| Dataset |   Error: NN  |  Hidden Nodes  |
+| :----:  |  :----:  |  :----:  |
+|   1     |  2.67 %  |  2.93 %  |
+|   2     |  0.00 %  |  0.00 %  |
+|   3     |  2.34 %  |  2.22 %  |
+|   4     |  7.76 %  |  6.70 %  |
+|   5     | 13.93 %  |  13.93 % |
+|   6     | 36.36 %  | 36.36 %  |
+
 
 
 ## Project Timeline
