@@ -21,7 +21,7 @@ from IterReg import IterReg
 from LeastSquares import get_perr
 from LeastSquares import get_nerr
 
-DATASET = 2
+DATASET = 6
 ALGO = 'SGDNN'
 NODES = 300 # Use -1 to inherit the number of nodes from existing logs
            # Specify a positive number to override and attempt convergence
@@ -108,6 +108,7 @@ if __name__ == "__main__":
     tau = 0.01
     sparser = 0 # Display loss only
     epoch_size = data.X_tr.shape[0] # 1 epoch is iterating m times
+    epoch_size = 20 # DEBUG
 
     while(1): # Converge until user stop
         try:
@@ -140,6 +141,7 @@ if __name__ == "__main__":
     # Check if progress was logged
     if discarded:
         print("Discarded loss: {}".format(loss_nn_new.round(2)))
+        nodes = logger.load_nodes() # If not logged, get best nodes
 
     # Compute metrics with new W
     # Expand feature vectors for bias term
@@ -151,5 +153,6 @@ if __name__ == "__main__":
     # Output results
     if not discarded:
         print("New local minimum found, weights logged")
+    print("Number of hidden nodes: {}".format(nodes))
     print("Best percent labels misclassified: {}%".format(perr.round(2)))
     print("Best training loss: {}".format(loss_nn.round(2)))

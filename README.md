@@ -157,7 +157,7 @@ I modified the `IterReg` feature to check for better performing weights with res
 In summary, the changes allow the training of neural networks to start from random values and converge to different minima each runtime. However, the `IterReg` feature will only store the best-performing weights.
 
 ## Neural Network Classification
-A neural network with one hidden layer and enough nodes can be used to approximate any function. I use this theorem to train a neural network to approximate a complex decision boundary for my datasets.
+A neural network with one hidden layer and enough nodes can be used to approximate any function. I use this theorem to train a neural network to approximate a complex decision boundary for each dataset.
 The objective function I minimized to train the neural network is the Squared Error Loss:
 
 ![formula](https://render.githubusercontent.com/render/math?math=min_\mathbf{w}\sum_{i=1}^N\frac{1}{2}%28\hat{y}_i-y_i%29^2)
@@ -166,21 +166,26 @@ Where
 
 ![formula](https://render.githubusercontent.com/render/math?math=\hat{y}_i=\sigma%28\sum_{k=1}^rv_k\sigma%28\sum_{j=1}^nx_{ij}w_{kj}%29%29)
 
-And the final classification is performed with
+I did this using Backpropagation via Stochastic Gradient Descent.
+
+Once the neural network weights w and v are trained, the final classification of the test set is performed with
 
 ![formula](https://render.githubusercontent.com/render/math?math=\hat{d}_i=sign%28\hat{y}_i%29)
 
 
+And compared with the correct labels. The results are shown in Table 6.
 
+
+**Table 6**. Tikhonov Regularization classification results. Along with cross-validation performance parameters.
 
 | Dataset |   Error: NN  |  Hidden Nodes  |
 | :----:  |  :----:  |  :----:  |
-|   1     |  2.67 %  |  200  |
-|   2     |  0.00 %  |  300  |
-|   3     |  2.34 %  |  200  |
-|   4     |  7.76 %  |  200  |
-|   5     | 13.93 %  |  200  |
-|   6     | 16.67 %  |  200  |
+|   1     |  6.82 %  |  200  |
+|   2     |  2.21 %  |  300  |
+|   3     |  6.08 %  |  325  |
+|   4     |  4.41 %  |  300  |
+|   5     |  4.68 %  |  300  |
+|   6     | 10.61 %  |  300  |
 
 
 
