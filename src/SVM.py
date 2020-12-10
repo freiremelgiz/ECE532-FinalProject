@@ -34,10 +34,6 @@ def step_GDSVM(X, y, w, lamb, tau):
     w_new = w - tau*grad
     return w_new
 
-# Take a step in SGD (TODO)
-def step_SGDSVM():
-    return
-
 
 if __name__ == "__main__":
     # Initialize a dataset

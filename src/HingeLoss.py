@@ -41,10 +41,6 @@ def step_GDHL(X, y, w, tau):
     w_new = w - tau*grad
     return w_new
 
-# Take a step in SGD (TODO)
-def step_SGDHL():
-    return
-
 
 if __name__ == "__main__":
     # Initialize a dataset

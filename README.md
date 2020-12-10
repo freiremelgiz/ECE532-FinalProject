@@ -98,7 +98,7 @@ In order to select the best ![formula](https://render.githubusercontent.com/rend
 
 Overall, the classifier performance decreased when using the regularized least squares classifier. Except for dataset 6 which showed a slight classification improvement when the L-2 norm of the classifier was reduced.
 
-## Iterative Methods (Gradient Descent)
+## Convex Optimization (IterReg)
 When I first started implementing Gradient Descent algorithms I found out that convergence would be very slow for the selected datasets. For this reason, I developed a logging system to save convergence progress via gradient descent.
 The logging system is implemented in `~/src/IterReg.py`. This class provides an interface to save the most recently computed weights in a `.log` file. The class also provides a function to read these weights to serve as a hot-start for the gradient descent algorithm in future script runs. This way, I can save gradient descent progress and improve convergence.
 The logged weight vectors for each algorithm and dataset are all stored in `~/resources/log/`. And follow the naming convention `iter_ALGO_DATASET.log`. Where "ALGO" is the algorithm code and "DATASET" is the dataset number for these weights.
@@ -157,7 +157,7 @@ I modified the `IterReg` feature to check for better performing weights with res
 In summary, the changes allow the training of neural networks to start from random values and converge to different minima each runtime. However, the `IterReg` feature will only store the best-performing weights.
 
 ## Neural Network Classification
-A neural network with one hidden layer and enough nodes can be used to approximate any function. I use this theorem to train a neural network to approximate a complex decision boundary for each dataset.
+A neural network with one hidden layer and enough nodes can be used to approximate any function. I use this theorem to train a neural network with one hidden layer and one output to approximate a complex decision boundary for each dataset. I trained a total of 6 different neural networks (one for each dataset).
 The objective function I minimized to train the neural network is the Squared Error Loss:
 
 ![formula](https://render.githubusercontent.com/render/math?math=min_\mathbf{w}\sum_{i=1}^N\frac{1}{2}%28\hat{y}_i-y_i%29^2)
@@ -166,7 +166,10 @@ Where
 
 ![formula](https://render.githubusercontent.com/render/math?math=\hat{y}_i=\sigma%28\sum_{k=1}^rv_k\sigma%28\sum_{j=1}^nx_{ij}w_{kj}%29%29)
 
-I did this using Backpropagation via Stochastic Gradient Descent.
+I did this using Backpropagation via Stochastic Gradient Descent. With regard to the parameters of the neural network, I chose a number of hidden nodes to start with, usually 200.
+And a step size of 0.01.
+After iterating to what appears to be a global minimum, I tried increasing the number of hidden nodes and iterating to a minimum with similar loss value.
+Sometimes the loss value would decrease further and othertimes is would hover at a similar value. In the latter case, I determined the neural network is appropriately trained.
 
 Once the neural network weights w and v are trained, the final classification of the test set is performed with
 
@@ -176,13 +179,13 @@ Once the neural network weights w and v are trained, the final classification of
 And compared with the correct labels. The results are shown in Table 6.
 
 
-**Table 6**. Tikhonov Regularization classification results. Along with cross-validation performance parameters.
+**Table 6**. Neural Network classification results along with number of hidden nodes.
 
 | Dataset |   Error: NN  |  Hidden Nodes  |
 | :----:  |  :----:  |  :----:  |
 |   1     |  6.82 %  |  200  |
 |   2     |  2.21 %  |  300  |
-|   3     |  6.08 %  |  325  |
+|   3     |  4.56 %  |  400  |
 |   4     |  4.41 %  |  300  |
 |   5     |  4.68 %  |  300  |
 |   6     | 10.61 %  |  300  |

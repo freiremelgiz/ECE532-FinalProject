@@ -6,8 +6,9 @@ __email__ = "freiremelgiz@wisc.edu"
 
 """
 This class provides an interface to logging iteration results.
-The results can also be loaded to provide a hot-start to
-iterative methods like Gradient Descent to speed up convergence
+The results can also be loaded to provide a hot-start to convex
+optimization problems as well as to store the best-performing
+weights in non-convex problems.
 
 Constructor:
 algo - string identifier for algorithm used
@@ -20,13 +21,13 @@ GDSVM - Gradient Descent for Support Vector Machine
 SGDNN - Stochastic Gradient Descent for Neural Network
 """
 
-# List of algorithm codes available
+# List of algorithms implemented
 ALGOS = ('GDLS','GDHL','GDSVM','SGDNN')
 
 import numpy as np
-from os.path import realpath # Absolute path
+from os.path import realpath # Absolute path in machine
 
-# Logging class to provide hot-start to iterative methods
+# Logging class to store results and streamline iterative methods
 class IterReg():
     def __init__(self,algo,dataset):
         # Check dataset and algo validity
