@@ -123,14 +123,14 @@ The logged weight vectors for each algorithm and dataset are all stored in `~/re
 The Hinge Loss cost function addresses the limitation of the Mean Squared Error cost function with regard to data outliers.
 In other words, Hinge Loss is insensitive to datapoints which are far away from the decision boundary.
 
-![formula](https://render.githubusercontent.com/render/math?math=min_\mathbf{w}\sum_{i=1}^N%281-y_i\mathbf{x}_i\mathbf{w}%29_%2B)
+![formula](https://render.githubusercontent.com/render/math?math=min_\mathbf{w}\sum_{i=1}^N%281-y_i\mathbf{x}_i^T\mathbf{w}%29_%2B)
 
 The Hinge Loss cost function is convex. It has one non-differentiable point. This point is addressed with the concept of sub-gradients. I chose the sub-gradient to be 0 at this point because this is a popular choice and leads to a compact gradient definition. I solved the minimization problem with Gradient Descent, leveraging the `IterReg.py` architecture to save convergence progress.
 
 
 The Support Vector Machine classification algorithm uses the Hinge Loss cost function with a L2 norm regularization term. This regularization term ensures that the minimization converges to the max-margin decision boundary. This is the boundary at the maximum distance from the closest datapoints.
 
-![formula](https://render.githubusercontent.com/render/math?math=min_\mathbf{w}\sum_{i=1}^N%281-y_i\mathbf{x}_i\mathbf{w}%29_%2B%2B||\mathbf{w}||_2^2)
+![formula](https://render.githubusercontent.com/render/math?math=min_\mathbf{w}\sum_{i=1}^N%281-y_i\mathbf{x}_i^T\mathbf{w}%29_%2B%2B||\mathbf{w}||_2^2)
 
 The Support Vector Machine problem was solved similarly to the Hinge Loss one via Gradient Descent. The regularization parameter ![formula](https://render.githubusercontent.com/render/math?math=\lambda) was chosen equal to the results of the Cross-Validation performed with Ridge Regression.
 
