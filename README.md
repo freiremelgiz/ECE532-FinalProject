@@ -2,6 +2,8 @@
 
 This repository contains the code for the final project of ECE532: Matrix Methods in Machine Learning. The final project consists on choosing a public dataset and classifying it using algorithms learned in the class.
 
+For a more detailed description of the algorithms listed in this page, please take a look at my [Final Report](https://github.com/freiremelgiz/ECE532_FinalProject/blob/master/resources/doc/FREIRE_ProjectReport.pdf) for this project.
+
 ## Project Dataset - Unmmanned Aerial Vehicles (UAV) Intrusion Detection
 The dataset I chose was posted at the [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/Unmanned+Aerial+Vehicle+%28UAV%29+Intrusion+Detection).
 However, the dataset can be downloaded from the author's personal [website](http://mason.gmu.edu/~lzhao9/materials/data/UAV/).
