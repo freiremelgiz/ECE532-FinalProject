@@ -115,11 +115,11 @@ The logged weight vectors for each algorithm and dataset are all stored in `~/re
 | :----:  |  :----:  |
 |  GDLS   |  Gradient Descent for Least Squares problem  |
 |  GDHL   |  Gradient Descent for Hinge Loss problem  |
-|  GDSVM  |  Gradient Descent for Support Vector Machine problem  |
+|  GDSVM  |  Gradient Descent for Support Vector Machines problem  |
 |  SGDNN  |  Stochastic Gradient Descent for Neural Network training  |
 
 
-## Hinge Loss and Support Vector Machine
+## Hinge Loss and Support Vector Machines
 The Hinge Loss cost function addresses the limitation of the Mean Squared Error cost function with regard to data outliers.
 In other words, Hinge Loss is insensitive to datapoints which are far away from the decision boundary.
 
@@ -128,14 +128,14 @@ In other words, Hinge Loss is insensitive to datapoints which are far away from 
 The Hinge Loss cost function is convex. It has one non-differentiable point. This point is addressed with the concept of sub-gradients. I chose the sub-gradient to be 0 at this point because this is a popular choice and leads to a compact gradient definition. I solved the minimization problem with Gradient Descent, leveraging the `IterReg.py` architecture to save convergence progress.
 
 
-The Support Vector Machine classification algorithm uses the Hinge Loss cost function with a L2 norm regularization term. This regularization term ensures that the minimization converges to the max-margin decision boundary. This is the boundary at the maximum distance from the closest datapoints.
+The Support Vector Machines classification algorithm uses the Hinge Loss cost function with a L2 norm regularization term. This regularization term ensures that the minimization converges to the max-margin decision boundary. This is the boundary at the maximum distance from the closest datapoints.
 
 ![formula](https://render.githubusercontent.com/render/math?math=min_\mathbf{w}\sum_{i=1}^N%281-y_i\mathbf{x}_i^T\mathbf{w}%29_%2B%2B||\mathbf{w}||_2^2)
 
-The Support Vector Machine problem was solved similarly to the Hinge Loss one via Gradient Descent. The regularization parameter ![formula](https://render.githubusercontent.com/render/math?math=\lambda) was chosen equal to the results of the Cross-Validation performed with Ridge Regression.
+The Support Vector Machines problem was solved similarly to the Hinge Loss one via Gradient Descent. The regularization parameter ![formula](https://render.githubusercontent.com/render/math?math=\lambda) was chosen equal to the results of the Cross-Validation performed with Ridge Regression.
 
 
-**Table 5**. Hinge Loss and Support Vector Machine classification results.
+**Table 5**. Hinge Loss and Support Vector Machines classification results.
 
 | Dataset |   Error: HL  |  Error: SVM  |  ![formula](https://render.githubusercontent.com/render/math?math=\lambda)  |
 | :----:  |  :----:  |  :----:  | :-----: |

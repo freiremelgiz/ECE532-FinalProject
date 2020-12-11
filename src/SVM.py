@@ -4,7 +4,7 @@ __author__ = "Victor Freire"
 __email__ = "freiremelgiz@wisc.edu"
 
 """
-This script solves the Support Vector Machine
+This script solves the Support Vector Machines
 classification problem to train a set of linear
 weights.
 
